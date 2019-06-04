@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Weatherify</string>
 
+    <!--Common-->
+    <string name="no_internet_connection_txt">Please make sure you have an internet connection and try again</string>
+    <string name="error_txt">Ups! Unable to retrieve weather forecast information now, please try again later</string>
+
     <!--daily weather brief compound view-->
     <string name="degree_icon_iv_description">Temperature degree icon</string>
     <string name="phenomenon_iv_description">Phenomenon icon</string>
