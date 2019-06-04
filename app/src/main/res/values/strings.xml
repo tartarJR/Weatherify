@@ -7,6 +7,7 @@
     <string name="weather_detail_btn_txt">SEE MORE WEATHER INFORMATION</string>
     <string name="celsius_symbol_tv_txt">C</string>
 
-    <!--main activity-->
+    <!--brief weather activity-->
     <string name="four_days_weather_title_tv_txt">Estonian 4 Days Weather Forecast</string>
+    <string name="status_tv_retrieving_txt">Retrieving four days weather forecast information</string>
 </resources>
