@@ -1,4 +1,7 @@
 package com.tatar.weatherify.ui.brief
 
-interface BriefWeatherMvpPresenter {
+import com.tatar.weatherify.ui.base.BaseMvpPresenter
+
+interface BriefWeatherMvpPresenter : BaseMvpPresenter<BriefWeatherMvpView?> {
+    fun retrieveWeatherForecastInformation()
 }

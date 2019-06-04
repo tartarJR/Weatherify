@@ -1,4 +1,6 @@
 package com.tatar.weatherify.ui.detail
 
-interface DetailWeatherMvpPresenter {
+import com.tatar.weatherify.ui.base.BaseMvpPresenter
+
+interface DetailWeatherMvpPresenter : BaseMvpPresenter<DetailWeatherMvpView?> {
 }

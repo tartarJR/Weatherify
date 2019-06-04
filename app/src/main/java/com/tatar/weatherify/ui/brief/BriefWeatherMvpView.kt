@@ -1,4 +1,8 @@
 package com.tatar.weatherify.ui.brief
 
-interface BriefWeatherMvpView {
+import com.tatar.weatherify.data.network.model.WeatherForecastResponse
+import com.tatar.weatherify.ui.base.BaseMvpView
+
+interface BriefWeatherMvpView : BaseMvpView {
+    fun displayWeatherForecastInformation(weatherForecastResponse: WeatherForecastResponse)
 }
