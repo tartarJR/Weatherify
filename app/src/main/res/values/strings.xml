@@ -6,4 +6,7 @@
     <string name="phenomenon_iv_description">Phenomenon icon</string>
     <string name="weather_detail_btn_txt">SEE MORE WEATHER INFORMATION</string>
     <string name="celsius_symbol_tv_txt">C</string>
+
+    <!--main activity-->
+    <string name="four_days_weather_title_tv_txt">Estonian 4 Days Weather Forecast</string>
 </resources>
