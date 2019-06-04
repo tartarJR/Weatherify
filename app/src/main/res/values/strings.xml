@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weatherify</string>
+
+    <!--daily weather brief compound view-->
+    <string name="degree_icon_iv_description">Temperature degree icon</string>
+    <string name="phenomenon_iv_description">Phenomenon icon</string>
+    <string name="weather_detail_btn_txt">SEE MORE WEATHER INFORMATION</string>
+    <string name="celsius_symbol_tv_txt">C</string>
 </resources>
