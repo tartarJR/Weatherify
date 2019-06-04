@@ -1,12 +1,13 @@
-package com.tatar.weatherify
+package com.tatar.weatherify.ui.brief
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tatar.weatherify.R
 
-class MainActivity : AppCompatActivity() {
+class BriefWeatherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_brief_weather)
     }
 }
