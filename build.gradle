@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
@@ -19,10 +19,19 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    recyclerview_version = '1.0.0'
+    powermock_version = '2.0.2'
+    dagger2_version = '2.23.1'
+    retrofit_version = '2.5.0'
+    rxjava2_version = '2.2.9'
+    rxandroid_version = '2.1.1'
 }
