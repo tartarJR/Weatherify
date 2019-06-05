@@ -1,9 +1,9 @@
 package com.tatar.weatherify.data.network.model
 
-import java.time.LocalDate
+import java.util.*
 
 data class DailyWeather(
-    var date: LocalDate?,
+    var date: Date?,
     var day: WeatherInfo?,
     var night: WeatherInfo?
 )
