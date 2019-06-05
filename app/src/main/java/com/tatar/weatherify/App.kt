@@ -1,7 +1,7 @@
 package com.tatar.weatherify
 
 import android.app.Application
-import com.tatar.weatherify.util.Utils
+import com.tatar.weatherify.util.CustomLogTree
 import timber.log.Timber
 
 class App : Application() {
@@ -12,7 +12,7 @@ class App : Application() {
         appInstance = this
 
         // Plant Timber for better logging
-        Timber.plant(Utils.LogEverythingTree("Weatherify-TAG"))
+        Timber.plant(CustomLogTree("Weatherify-TAG"))
     }
 
     companion object {
