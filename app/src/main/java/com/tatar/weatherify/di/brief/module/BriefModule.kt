@@ -14,7 +14,7 @@ object BriefModule {
     @JvmStatic
     @PerBrief
     @Provides
-    fun searchPresenter(
+    fun briefWeatherPresenter(
         weatherApi: WeatherApi,
         networkUtil: NetworkUtil
     ): BriefWeatherMvpPresenter {
