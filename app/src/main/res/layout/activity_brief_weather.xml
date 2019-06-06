@@ -15,65 +15,69 @@
         android:text="@string/four_days_weather_title_tv_txt"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
-        android:id="@+id/dailyWeatherBriefView"
+        android:id="@+id/first_daily_weather_brief_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/dailyWeatherBriefView2"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/second_daily_weather_brief_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/four_days_weather_title_tv" />
 
     <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
-        android:id="@+id/dailyWeatherBriefView2"
+        android:id="@+id/second_daily_weather_brief_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/dailyWeatherBriefView3"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/third_daily_weather_brief_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dailyWeatherBriefView" />
+        app:layout_constraintTop_toBottomOf="@+id/first_daily_weather_brief_view" />
 
     <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
-        android:id="@+id/dailyWeatherBriefView3"
+        android:id="@+id/third_daily_weather_brief_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/dailyWeatherBriefView4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fourth_daily_weather_brief_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dailyWeatherBriefView2" />
+        app:layout_constraintTop_toBottomOf="@+id/second_daily_weather_brief_view" />
 
     <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
-        android:id="@+id/dailyWeatherBriefView4"
+        android:id="@+id/fourth_daily_weather_brief_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dailyWeatherBriefView3" />
+        app:layout_constraintTop_toBottomOf="@+id/third_daily_weather_brief_view" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +91,6 @@
         android:text="@string/status_tv_retrieving_txt"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
