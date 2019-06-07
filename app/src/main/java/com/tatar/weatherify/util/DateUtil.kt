@@ -5,14 +5,8 @@ import java.util.*
 
 object DateUtil {
 
-    private val timeFormat = SimpleDateFormat("HH:mm", Locale.ENGLISH)
     private val dayFormat = SimpleDateFormat("EEEE", Locale.ENGLISH)
     private val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
-
-    @JvmStatic
-    fun getTime(): String {
-        return timeFormat.format(Calendar.getInstance().time)
-    }
 
     @JvmStatic
     fun getDay(date: Date): String {
