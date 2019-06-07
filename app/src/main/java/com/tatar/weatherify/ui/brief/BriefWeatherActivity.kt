@@ -9,6 +9,7 @@ import com.tatar.weatherify.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_brief_weather.*
 import javax.inject.Inject
 
+
 class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
 
     @Inject
@@ -27,6 +28,10 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
     }
 
     override fun initViews() {
+        swipe_refresh_layout.setOnRefreshListener {
+            briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
+            swipe_refresh_layout.isRefreshing = false
+        }
     }
 
     override fun init() {
