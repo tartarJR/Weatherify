@@ -19,9 +19,14 @@ class SharedPreferencesManager(context: Context, private val gson: Gson) {
         sharedPreferences.edit().putString(PREF_KEY_WEATHER_FORECAST_CACHE, weatherForecastResponseString).apply()
     }
 
-    fun getCachedWeatherForecastData(): WeatherForecastResponse {
+    fun getCachedWeatherForecastData(): WeatherForecastResponse? {
         val weatherForecastResponseString = sharedPreferences.getString(PREF_KEY_WEATHER_FORECAST_CACHE, null)
-        return gson.fromJson(weatherForecastResponseString, WeatherForecastResponse::class.java)
+
+        return if (weatherForecastResponseString == null) {
+            null
+        } else {
+            gson.fromJson(weatherForecastResponseString, WeatherForecastResponse::class.java)
+        }
     }
 
     companion object {
