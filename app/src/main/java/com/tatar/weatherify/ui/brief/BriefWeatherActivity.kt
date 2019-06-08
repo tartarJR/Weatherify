@@ -1,6 +1,7 @@
 package com.tatar.weatherify.ui.brief
 
 import android.view.View
+import android.widget.Toast
 import com.tatar.weatherify.App
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
@@ -69,6 +70,10 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         second_daily_weather_brief_view.visibility = View.GONE
         third_daily_weather_brief_view.visibility = View.GONE
         fourth_daily_weather_brief_view.visibility = View.GONE
+    }
+
+    override fun showCachedDataDisplayedToast() {
+        Toast.makeText(this, getString(R.string.cached_data_displayed_toast_txt), Toast.LENGTH_LONG).show()
     }
 
     override fun displayWeatherForecastInformation(weatherForecastResponse: WeatherForecastResponse) {

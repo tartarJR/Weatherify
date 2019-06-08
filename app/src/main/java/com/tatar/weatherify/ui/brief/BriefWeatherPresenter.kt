@@ -69,6 +69,7 @@ class BriefWeatherPresenter(
                     briefWeatherMvpView?.showStatusTv()
                 } else {
                     hideLoadingContent()
+                    briefWeatherMvpView?.showCachedDataDisplayedToast()
                     showWeatherForecastContent(sharedPreferencesManager.getCachedWeatherForecastData()!!)
                 }
             }
