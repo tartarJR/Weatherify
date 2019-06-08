@@ -1,12 +1,15 @@
 package com.tatar.weatherify.ui.brief
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.tatar.weatherify.App
 import com.tatar.weatherify.R
+import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.di.brief.component.DaggerBriefComponent
 import com.tatar.weatherify.ui.base.BaseActivity
+import com.tatar.weatherify.ui.detail.DetailWeatherActivity
 import kotlinx.android.synthetic.main.activity_brief_weather.*
 import javax.inject.Inject
 
@@ -32,6 +35,22 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         swipe_refresh_layout.setOnRefreshListener {
             briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
             swipe_refresh_layout.isRefreshing = false
+        }
+
+        first_daily_weather_brief_view.setOnClickListener {
+            startDetailWeatherActivity(first_daily_weather_brief_view.getDailyWeather())
+        }
+
+        second_daily_weather_brief_view.setOnClickListener {
+            startDetailWeatherActivity(second_daily_weather_brief_view.getDailyWeather())
+        }
+
+        third_daily_weather_brief_view.setOnClickListener {
+            startDetailWeatherActivity(third_daily_weather_brief_view.getDailyWeather())
+        }
+
+        fourth_daily_weather_brief_view.setOnClickListener {
+            startDetailWeatherActivity(fourth_daily_weather_brief_view.getDailyWeather())
         }
     }
 
@@ -81,5 +100,15 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1])
         third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2])
         fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3])
+    }
+
+    private fun startDetailWeatherActivity(dailyWeather: DailyWeather) {
+        val intent = Intent(this, DetailWeatherActivity::class.java)
+        intent.putExtra(KEY_SELECTED_DAILY_WEATHER, dailyWeather)
+        startActivity(intent)
+    }
+
+    companion object {
+        const val KEY_SELECTED_DAILY_WEATHER = "selected_daily_weather"
     }
 }
