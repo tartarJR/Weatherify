@@ -5,6 +5,7 @@ interface BaseMvpView {
     fun hideProgressBar()
     fun showStatusTv()
     fun hideStatusTv()
+    fun displayLoadingMessage()
     fun displayErrorMessage()
     fun displayNoInternetWarning()
 }

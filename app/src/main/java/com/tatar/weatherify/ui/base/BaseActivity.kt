@@ -52,6 +52,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseMvpView {
         statusTextView?.visibility = View.GONE
     }
 
+    override fun displayLoadingMessage() {
+        statusTextView?.text = getString(R.string.status_tv_retrieving_txt)
+    }
+
     override fun displayErrorMessage() {
         statusTextView?.text = getString(R.string.error_txt)
     }
