@@ -1,6 +1,7 @@
 package com.tatar.weatherify.di.brief.module
 
 import com.tatar.weatherify.data.network.WeatherApi
+import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.di.brief.scope.PerBrief
 import com.tatar.weatherify.ui.brief.BriefWeatherMvpPresenter
 import com.tatar.weatherify.ui.brief.BriefWeatherPresenter
@@ -16,8 +17,9 @@ object BriefModule {
     @Provides
     fun briefWeatherPresenter(
         weatherApi: WeatherApi,
-        networkUtil: NetworkUtil
+        networkUtil: NetworkUtil,
+        sharedPreferencesManager: SharedPreferencesManager
     ): BriefWeatherMvpPresenter {
-        return BriefWeatherPresenter(weatherApi, networkUtil)
+        return BriefWeatherPresenter(weatherApi, sharedPreferencesManager, networkUtil)
     }
 }
