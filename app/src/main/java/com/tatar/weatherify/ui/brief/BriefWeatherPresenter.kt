@@ -2,6 +2,7 @@ package com.tatar.weatherify.ui.brief
 
 import com.tatar.weatherify.data.network.WeatherApi
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
+import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.ui.base.BaseMvpPresenter
 import com.tatar.weatherify.util.NetworkUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,6 +13,7 @@ import timber.log.Timber
 
 class BriefWeatherPresenter(
     private val weatherApi: WeatherApi,
+    private val sharedPreferencesManager: SharedPreferencesManager,
     private val networkUtil: NetworkUtil
 ) :
     BriefWeatherMvpPresenter {
@@ -40,6 +42,7 @@ class BriefWeatherPresenter(
         hideWeatherForecastContent()
         showLoadingContent()
 
+        // TODO manage null view situation better
         if (this.briefWeatherMvpView != null) {
             if (networkUtil.hasInternetConnection()) {
                 subscriptions.add(weatherApi.getFourDaysWeatherForecast()
@@ -49,27 +52,34 @@ class BriefWeatherPresenter(
                         { weatherForecastResponse ->
                             hideLoadingContent()
                             showWeatherForecastContent(weatherForecastResponse)
+                            sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
                         },
                         { error ->
                             Timber.e(error.localizedMessage)
                             hideWeatherForecastContent()
                             hideLoadingContent()
-                            briefWeatherMvpView?.displayErrorMessage()
-                            briefWeatherMvpView?.showStatusTv()
+                            showErrorMessage()
                         }
                     ))
             } else {
-                hideWeatherForecastContent()
-                hideLoadingContent()
-                briefWeatherMvpView?.displayNoInternetWarning()
-                briefWeatherMvpView?.showStatusTv()
+                if (sharedPreferencesManager.getCachedWeatherForecastData() == null) {
+                    hideWeatherForecastContent()
+                    hideLoadingContent()
+                    briefWeatherMvpView?.displayNoInternetWarning()
+                    briefWeatherMvpView?.showStatusTv()
+                } else {
+                    hideLoadingContent()
+                    showWeatherForecastContent(sharedPreferencesManager.getCachedWeatherForecastData()!!)
+                }
             }
         } else {
+            showErrorMessage()
             Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
         }
     }
 
     private fun showLoadingContent() {
+        briefWeatherMvpView?.displayLoadingMessage()
         briefWeatherMvpView?.showStatusTv()
         briefWeatherMvpView?.showProgressBar()
     }
@@ -88,5 +98,10 @@ class BriefWeatherPresenter(
     private fun hideWeatherForecastContent() {
         briefWeatherMvpView?.hideTitle()
         briefWeatherMvpView?.hideBriefWeatherCompoundViews()
+    }
+
+    private fun showErrorMessage() {
+        briefWeatherMvpView?.displayErrorMessage()
+        briefWeatherMvpView?.showStatusTv()
     }
 }
