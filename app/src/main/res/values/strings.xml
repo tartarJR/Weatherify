@@ -14,5 +14,5 @@
     <!--brief weather activity-->
     <string name="four_days_weather_title_tv_txt">Estonian 4 Days Weather Forecast</string>
     <string name="status_tv_retrieving_txt">Retrieving four days weather forecast information</string>
-    <string name="cached_data_displayed_toast_txt">There is no internet connection, displaying latest available forecast information</string>
+    <string name="cached_data_displayed_toast_txt">No internet connection, displaying latest available weather forecast information</string>
 </resources>
