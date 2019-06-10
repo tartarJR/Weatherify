@@ -38,19 +38,19 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         }
 
         first_daily_weather_brief_view.setOnClickListener {
-            startDetailWeatherActivity(first_daily_weather_brief_view.getDailyWeather())
+            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(first_daily_weather_brief_view.getDailyWeather())
         }
 
         second_daily_weather_brief_view.setOnClickListener {
-            startDetailWeatherActivity(second_daily_weather_brief_view.getDailyWeather())
+            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(second_daily_weather_brief_view.getDailyWeather())
         }
 
         third_daily_weather_brief_view.setOnClickListener {
-            startDetailWeatherActivity(third_daily_weather_brief_view.getDailyWeather())
+            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(third_daily_weather_brief_view.getDailyWeather())
         }
 
         fourth_daily_weather_brief_view.setOnClickListener {
-            startDetailWeatherActivity(fourth_daily_weather_brief_view.getDailyWeather())
+            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(fourth_daily_weather_brief_view.getDailyWeather())
         }
     }
 
@@ -102,7 +102,7 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3])
     }
 
-    private fun startDetailWeatherActivity(dailyWeather: DailyWeather) {
+    override fun startDetailWeatherActivity(dailyWeather: DailyWeather) {
         val intent = Intent(this, DetailWeatherActivity::class.java)
         intent.putExtra(KEY_SELECTED_DAILY_WEATHER, dailyWeather)
         startActivity(intent)

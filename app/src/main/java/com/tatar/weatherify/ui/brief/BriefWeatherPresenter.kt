@@ -1,6 +1,7 @@
 package com.tatar.weatherify.ui.brief
 
 import com.tatar.weatherify.data.network.WeatherApi
+import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.ui.base.BaseMvpPresenter
@@ -77,6 +78,10 @@ class BriefWeatherPresenter(
             showErrorMessage()
             Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
         }
+    }
+
+    override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
+        briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather)
     }
 
     private fun showLoadingContent() {
