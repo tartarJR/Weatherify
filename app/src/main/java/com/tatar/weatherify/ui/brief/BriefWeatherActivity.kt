@@ -19,6 +19,16 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
     @Inject
     lateinit var briefWeatherMvpPresenter: BriefWeatherMvpPresenter
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        briefWeatherMvpPresenter.clearDisposable()
+    }
+
     override fun getLayoutId(): Int {
         return R.layout.activity_brief_weather
     }
@@ -64,11 +74,6 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         briefWeatherMvpPresenter.disposeDisposable()
     }
 
-    override fun onStop() {
-        super.onStop()
-        briefWeatherMvpPresenter.clearDisposable()
-    }
-
     override fun showTitle() {
         four_days_weather_title_tv.visibility = View.VISIBLE
     }
@@ -96,19 +101,20 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
     }
 
     override fun displayWeatherForecastInformation(weatherForecastResponse: WeatherForecastResponse) {
-        first_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[0])
-        second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1])
-        third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2])
-        fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3])
+        first_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[0]) // current day
+        second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1]) // 2nd day
+        third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2]) // 3rd day
+        fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3]) // 4th day
     }
 
     override fun startDetailWeatherActivity(dailyWeather: DailyWeather) {
         val intent = Intent(this, DetailWeatherActivity::class.java)
-        intent.putExtra(KEY_SELECTED_DAILY_WEATHER, dailyWeather)
+        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+        intent.putExtra(BUNDLE_KEY_SELECTED_DAILY_WEATHER, dailyWeather)
         startActivity(intent)
     }
 
     companion object {
-        const val KEY_SELECTED_DAILY_WEATHER = "selected_daily_weather"
+        const val BUNDLE_KEY_SELECTED_DAILY_WEATHER = "selected_daily_weather"
     }
 }
