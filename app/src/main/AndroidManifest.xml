@@ -18,7 +18,8 @@
         <activity
             android:name=".ui.detail.DetailWeatherActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.brief.BriefWeatherActivity" />
+            android:parentActivityName=".ui.brief.BriefWeatherActivity"
+            android:theme="@style/ChildTheme" />
         <activity
             android:name=".ui.brief.BriefWeatherActivity"
             android:launchMode="singleTask">
