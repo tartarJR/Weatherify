@@ -31,7 +31,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
+            <com.tatar.weatherify.ui.brief.BriefWeatherCompoundView
                 android:id="@+id/first_daily_weather_brief_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/four_days_weather_title_tv" />
 
-            <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
+            <com.tatar.weatherify.ui.brief.BriefWeatherCompoundView
                 android:id="@+id/second_daily_weather_brief_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/first_daily_weather_brief_view" />
 
-            <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
+            <com.tatar.weatherify.ui.brief.BriefWeatherCompoundView
                 android:id="@+id/third_daily_weather_brief_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/second_daily_weather_brief_view" />
 
-            <com.tatar.weatherify.ui.brief.custom.BriefWeatherCompoundView
+            <com.tatar.weatherify.ui.brief.BriefWeatherCompoundView
                 android:id="@+id/fourth_daily_weather_brief_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

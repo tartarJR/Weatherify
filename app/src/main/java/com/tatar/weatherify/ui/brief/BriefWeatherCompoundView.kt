@@ -1,4 +1,4 @@
-package com.tatar.weatherify.ui.brief.custom
+package com.tatar.weatherify.ui.brief
 
 import android.content.Context
 import android.util.AttributeSet
