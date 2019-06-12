@@ -13,7 +13,8 @@ class DetailWeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_weather)
 
-        val dailyWeather = intent?.extras?.getParcelable<DailyWeather>(BriefWeatherActivity.KEY_SELECTED_DAILY_WEATHER)
+        val dailyWeather =
+            intent?.extras?.getParcelable<DailyWeather>(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)
 
         Toast.makeText(this, dailyWeather?.date.toString(), Toast.LENGTH_LONG).show()
     }
