@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.view_temperature.view.*
 
 class TemperatureCompoundView : ConstraintLayout {
 
-    private var temperature: Double = 0.0
+    private var temperature: Int = 0
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -19,7 +19,7 @@ class TemperatureCompoundView : ConstraintLayout {
         LayoutInflater.from(context).inflate(R.layout.view_temperature, this, true)
     }
 
-    fun setTemperature(temperature: Double) {
+    fun setTemperature(temperature: Int) {
         this.temperature = temperature
         setupView()
     }
