@@ -21,6 +21,7 @@ class BriefWeatherCompoundView : ConstraintLayout {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_brief_weather, this, true)
+        //TODO set different backgrounds depending on day time or night time
         setBackgroundResource(R.drawable.bg_view_daily_weather_brief)
     }
 

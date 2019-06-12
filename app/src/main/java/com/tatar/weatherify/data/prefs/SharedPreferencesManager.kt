@@ -14,6 +14,12 @@ class SharedPreferencesManager(context: Context, private val gson: Gson) {
         sharedPreferences = context.getSharedPreferences(WEATHER_FORECAST_PREF_NAME, Context.MODE_PRIVATE)
     }
 
+    /*
+        Save latest weather forecast info to prefs in json format
+        Used for the sake of simplicity as the weather forecast info is not too big(memory wise)
+        Retrofit cache could be used but it is not stable
+        Room, SqLite can be used for bigger amount of data
+    */
     fun saveLatestWeatherForecastData(weatherForecastResponse: WeatherForecastResponse) {
         val weatherForecastResponseString = gson.toJson(weatherForecastResponse)
         sharedPreferences.edit().putString(PREF_KEY_WEATHER_FORECAST_CACHE, weatherForecastResponseString).apply()
