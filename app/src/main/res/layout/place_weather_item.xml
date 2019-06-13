@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/place_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kuressaare" />
+
+        <ImageView
+            android:id="@+id/phenomenon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phenomenon_iv_img_description"
+            app:layout_constraintEnd_toEndOf="@+id/place_name_tv"
+            app:layout_constraintStart_toStartOf="@+id/place_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/place_name_tv"
+            app:srcCompat="@drawable/sunny" />
+
+        <TextView
+            android:id="@+id/phenomenon_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/phenomenon_iv"
+            app:layout_constraintStart_toStartOf="@+id/phenomenon_iv"
+            app:layout_constraintTop_toBottomOf="@+id/phenomenon_iv"
+            tools:text="Sunny" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
