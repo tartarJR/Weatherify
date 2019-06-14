@@ -15,4 +15,16 @@
     <string name="four_days_weather_title_tv_txt">Estonian 4 Days Weather Forecast</string>
     <string name="status_tv_retrieving_txt">Retrieving four days weather forecast information</string>
     <string name="cached_data_displayed_toast_txt">No internet connection, displaying latest available weather forecast information</string>
+
+    <!--detail weather activity-->
+    <string name="day_night_switch_txt">Day/Night</string>
+    <string name="temp_max_label_txt">Temperature Max</string>
+    <string name="temp_min_label_txt">Temperature Min</string>
+    <string name="sea_label_txt">Sea</string>
+    <string name="peipsi_label_txt">Peipsi</string>
+    <string name="places_label_txt">Places</string>
+    <string name="places_hint_tv_txt">Tap a city to see more information</string>
+
+    <!--city item layout-->
+    <string name="phenomenon_iv_img_description">Phenomenon icon</string>
 </resources>
