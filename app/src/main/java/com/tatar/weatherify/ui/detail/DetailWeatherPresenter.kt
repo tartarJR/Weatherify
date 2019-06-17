@@ -3,8 +3,9 @@ package com.tatar.weatherify.ui.detail
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherInfo
 import java.util.*
+import javax.inject.Inject
 
-class DetailWeatherPresenter : DetailWeatherMvpPresenter {
+class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
 
     private var detailWeatherMvpView: DetailWeatherMvpView? = null
 

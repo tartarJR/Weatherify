@@ -8,8 +8,9 @@ import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Wind
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.wind_item.*
+import javax.inject.Inject
 
-class WindAdapter : RecyclerView.Adapter<WindAdapter.PlaceViewHolder>() {
+class WindAdapter @Inject constructor() : RecyclerView.Adapter<WindAdapter.PlaceViewHolder>() {
 
     private var winds: List<Wind> = ArrayList()
 

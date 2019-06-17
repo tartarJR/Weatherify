@@ -10,8 +10,9 @@ import com.tatar.weatherify.util.ViewUtil
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.place_weather_item.*
 import kotlinx.android.synthetic.main.view_brief_weather.view.*
+import javax.inject.Inject
 
-class PlaceAdapter(private val itemClickListener: ItemClickListener) :
+class PlaceAdapter @Inject constructor(private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
     private var places: List<Place> = ArrayList()

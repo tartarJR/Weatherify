@@ -1,25 +1,15 @@
 package com.tatar.weatherify.di.brief.module
 
-import com.tatar.weatherify.data.network.WeatherApi
-import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.di.brief.scope.PerBrief
 import com.tatar.weatherify.ui.brief.BriefWeatherMvpPresenter
 import com.tatar.weatherify.ui.brief.BriefWeatherPresenter
-import com.tatar.weatherify.util.NetworkUtil
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
-object BriefModule {
+interface BriefModule {
 
-    @JvmStatic
     @PerBrief
-    @Provides
-    fun briefWeatherPresenter(
-        weatherApi: WeatherApi,
-        networkUtil: NetworkUtil,
-        sharedPreferencesManager: SharedPreferencesManager
-    ): BriefWeatherMvpPresenter {
-        return BriefWeatherPresenter(weatherApi, sharedPreferencesManager, networkUtil)
-    }
+    @Binds
+    fun bindDetailWeatherPresenter(detailWeatherPresenter: BriefWeatherPresenter): BriefWeatherMvpPresenter
 }

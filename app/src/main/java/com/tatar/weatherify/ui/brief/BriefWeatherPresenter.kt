@@ -10,9 +10,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import javax.inject.Inject
 
 
-class BriefWeatherPresenter(
+class BriefWeatherPresenter @Inject constructor(
     private val weatherApi: WeatherApi,
     private val sharedPreferencesManager: SharedPreferencesManager,
     private val networkUtil: NetworkUtil
