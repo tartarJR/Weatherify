@@ -24,7 +24,14 @@
     <string name="peipsi_label_txt">Peipsi</string>
     <string name="places_label_txt">Places</string>
     <string name="places_hint_tv_txt">Tap a city to see more information</string>
+    <string name="winds_label_txt">Winds</string>
 
     <!--city item layout-->
     <string name="phenomenon_iv_img_description">Phenomenon icon</string>
+
+    <!--wind item layout-->
+    <string name="direction_tv_txt">Direction: %1$s</string>
+    <string name="max_speed_tv_txt">Max Speed: %1$d m/s</string>
+    <string name="min_speed_tv_txt">Min Speed: %1$d m/s</string>
+
 </resources>

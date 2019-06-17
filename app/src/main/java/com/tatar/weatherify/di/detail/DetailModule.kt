@@ -1,6 +1,7 @@
 package com.tatar.weatherify.di.detail
 
 import com.tatar.weatherify.ui.detail.PlaceAdapter
+import com.tatar.weatherify.ui.detail.WindAdapter
 import dagger.Module
 import dagger.Provides
 
@@ -10,7 +11,14 @@ object DetailModule {
     @JvmStatic
     @PerDetail
     @Provides
-    fun repoAdapter(itemClickListener: PlaceAdapter.ItemClickListener): PlaceAdapter {
+    fun placeAdapter(itemClickListener: PlaceAdapter.ItemClickListener): PlaceAdapter {
         return PlaceAdapter(itemClickListener)
+    }
+
+    @JvmStatic
+    @PerDetail
+    @Provides
+    fun windAdapter(): WindAdapter {
+        return WindAdapter()
     }
 }

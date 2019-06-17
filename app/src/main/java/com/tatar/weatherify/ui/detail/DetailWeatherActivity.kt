@@ -18,6 +18,9 @@ class DetailWeatherActivity : BaseActivity(), PlaceAdapter.ItemClickListener {
     @Inject
     lateinit var placeAdapter: PlaceAdapter
 
+    @Inject
+    lateinit var windAdapter: WindAdapter
+
     override fun getLayoutId(): Int {
         return R.layout.activity_detail_weather
     }
@@ -39,6 +42,13 @@ class DetailWeatherActivity : BaseActivity(), PlaceAdapter.ItemClickListener {
         )
         place_recycler_view.adapter = placeAdapter
 
+        wind_recycler_view.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        wind_recycler_view.adapter = windAdapter
+
         val dailyWeather =
             intent?.extras?.getParcelable<DailyWeather>(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)
 
@@ -51,6 +61,7 @@ class DetailWeatherActivity : BaseActivity(), PlaceAdapter.ItemClickListener {
         sea_tv.text = dailyWeather.day.sea
         peipsi_tv.text = dailyWeather.day.peipsi
         placeAdapter.setPlaces(dailyWeather.day.places!!)
+        windAdapter.setPlaces(dailyWeather.day.winds!!)
     }
 
     override fun init() {
