@@ -8,6 +8,7 @@
     tools:context=".ui.detail.DetailWeatherActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark">
@@ -17,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/day_night_switch_txt"
+            android:checked="true"
+            android:text="@string/day_night_switch_day_txt"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,17 +43,20 @@
             tools:text="Sun, 09 Jun 2019" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/weather_info_contanier"
+            android:id="@+id/weather_info_container"
             style="@style/ContainerStyle"
+            android:layout_height="360dp"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/temp_max_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="@string/temp_max_label_txt"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/temp_max_view"
@@ -114,9 +119,11 @@
 
             <TextView
                 android:id="@+id/temp_min_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="@string/temp_min_label_txt"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/temp_min_view"
@@ -139,16 +146,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/city_container"
+            android:id="@+id/places_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_view_daily_weather_brief"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_info_contanier">
+            app:layout_constraintTop_toBottomOf="@+id/weather_info_container">
 
             <TextView
                 android:id="@+id/places_label"
@@ -192,16 +200,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/wind_container"
+            android:id="@+id/winds_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_view_daily_weather_brief"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city_container">
+            app:layout_constraintTop_toBottomOf="@+id/places_container">
 
             <TextView
                 android:id="@+id/winds_label"
@@ -235,7 +244,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sea_info_container"
             style="@style/ContainerStyle"
-            app:layout_constraintTop_toBottomOf="@+id/wind_container"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/winds_container"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -272,6 +282,7 @@
             android:id="@+id/peipsi_info_container"
             style="@style/ContainerStyle"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sea_info_container"
             tools:ignore="MissingConstraints">

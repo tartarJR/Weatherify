@@ -17,9 +17,10 @@
     <string name="cached_data_displayed_toast_txt">No internet connection, displaying latest available weather forecast information</string>
 
     <!--detail weather activity-->
-    <string name="day_night_switch_txt">Day/Night</string>
-    <string name="temp_max_label_txt">Temperature Max</string>
-    <string name="temp_min_label_txt">Temperature Min</string>
+    <string name="day_night_switch_day_txt">Day</string>
+    <string name="day_night_switch_night_txt">Night</string>
+    <string name="temp_max_label_txt">Maximum Temperature</string>
+    <string name="temp_min_label_txt">Minimum Temperature</string>
     <string name="sea_label_txt">Sea</string>
     <string name="peipsi_label_txt">Peipsi</string>
     <string name="places_label_txt">Places</string>
