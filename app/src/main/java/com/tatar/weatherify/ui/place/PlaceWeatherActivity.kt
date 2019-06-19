@@ -21,7 +21,7 @@ class PlaceWeatherActivity : BaseActivity(), PlaceWeatherMvpView {
     override fun provideDependencies() {
         val placeComponent = DaggerPlaceComponent.builder()
             .placeWeatherActivity(this)
-            .appComponent(App.appInstance.appComponent()).build()
+            .appComponent((application as App).appComponent()).build()
 
         placeComponent.injectPlaceWeatherActivity(this)
     }

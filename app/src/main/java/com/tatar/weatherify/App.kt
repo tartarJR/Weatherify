@@ -16,16 +16,10 @@ class App : Application() {
         // Plant Timber for better logging
         Timber.plant(CustomLogTree("Weatherify-TAG"))
 
-        appInstance = this
-
         appComponent = DaggerAppComponent.builder().applicationContext(this).build()
     }
 
     fun appComponent(): AppComponent {
         return appComponent
-    }
-
-    companion object {
-        lateinit var appInstance: App private set
     }
 }

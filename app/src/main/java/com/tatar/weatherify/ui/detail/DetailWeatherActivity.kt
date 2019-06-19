@@ -38,7 +38,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
         val detailComponent = DaggerDetailComponent.builder()
             .detailWeatherActivity(this)
             .itemClickListener(this)
-            .appComponent(App.appInstance.appComponent()).build()
+            .appComponent((application as App).appComponent()).build()
 
         detailComponent.injectDetailWeatherActivity(this)
     }

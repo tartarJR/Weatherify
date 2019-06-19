@@ -36,7 +36,7 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
     override fun provideDependencies() {
         val briefComponent = DaggerBriefComponent.builder()
             .briefWeatherActivity(this)
-            .appComponent(App.appInstance.appComponent()).build()
+            .appComponent((application as App).appComponent()).build()
 
         briefComponent.injectSearchActivity(this)
     }
