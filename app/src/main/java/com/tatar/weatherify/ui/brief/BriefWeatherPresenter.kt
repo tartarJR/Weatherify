@@ -5,6 +5,7 @@ import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.ui.base.BaseMvpPresenter
 import com.tatar.weatherify.util.NetworkUtil
+import com.tatar.weatherify.util.SunriseSunsetUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class BriefWeatherPresenter @Inject constructor(
     private val weatherApi: WeatherApi,
     private val sharedPreferencesManager: SharedPreferencesManager,
-    private val networkUtil: NetworkUtil
+    private val networkUtil: NetworkUtil,
+    private val sunriseSunsetUtil: SunriseSunsetUtil
 ) : BriefWeatherMvpPresenter {
 
     private var briefWeatherMvpView: BriefWeatherMvpView? = null
@@ -51,7 +53,10 @@ class BriefWeatherPresenter @Inject constructor(
                     .subscribe(
                         { weatherForecastResponse ->
                             hideLoadingContent()
-                            briefWeatherMvpView?.showFourDaysBriefWeatherInfo(weatherForecastResponse)
+                            briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
+                                weatherForecastResponse,
+                                sunriseSunsetUtil.isDayLight()
+                            )
                             sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
                         },
                         { error ->
@@ -70,7 +75,10 @@ class BriefWeatherPresenter @Inject constructor(
                 } else {
                     hideLoadingContent()
                     briefWeatherMvpView?.showCachedDataDisplayedToast()
-                    briefWeatherMvpView?.showFourDaysBriefWeatherInfo(sharedPreferencesManager.getCachedWeatherForecastData()!!)
+                    briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
+                        sharedPreferencesManager.getCachedWeatherForecastData()!!,
+                        sunriseSunsetUtil.isDayLight()
+                    )
                 }
             }
         } else {

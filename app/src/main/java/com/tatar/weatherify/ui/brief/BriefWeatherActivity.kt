@@ -74,7 +74,7 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         briefWeatherMvpPresenter.disposeDisposable()
     }
 
-    override fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse) {
+    override fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse, isDayLight: Boolean) {
         four_days_weather_title_tv.visibility = View.VISIBLE
         brief_weather_hint_tv.visibility = View.VISIBLE
 
@@ -83,10 +83,10 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         third_daily_weather_brief_view.visibility = View.VISIBLE
         fourth_daily_weather_brief_view.visibility = View.VISIBLE
 
-        first_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[0]) // current day
-        second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1]) // 2nd day
-        third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2]) // 3rd day
-        fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3]) // 4th day
+        first_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[0], isDayLight) // current day
+        second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1], isDayLight) // 2nd day
+        third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2], isDayLight) // 3rd day
+        fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3], isDayLight) // 4th day
     }
 
     override fun hideFourDaysBriefWeatherInfo() {

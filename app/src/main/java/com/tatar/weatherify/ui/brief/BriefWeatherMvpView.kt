@@ -5,7 +5,7 @@ import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.ui.base.BaseMvpView
 
 interface BriefWeatherMvpView : BaseMvpView {
-    fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse)
+    fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse, isDayLight: Boolean)
     fun hideFourDaysBriefWeatherInfo()
     fun showCachedDataDisplayedToast()
     fun startDetailWeatherActivity(dailyWeather: DailyWeather)
