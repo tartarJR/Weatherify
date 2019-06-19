@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.DailyWeather
-import com.tatar.weatherify.data.network.model.WeatherInfo
+import com.tatar.weatherify.data.network.model.Place
 import com.tatar.weatherify.util.DateUtil
 import com.tatar.weatherify.util.ViewUtil
 import kotlinx.android.synthetic.main.view_brief_weather.view.*
-import java.util.*
 
 
 class BriefWeatherCompoundView : ConstraintLayout {
 
     private lateinit var dailyWeather: DailyWeather
+    private lateinit var place: Place
     private var isDaylight: Boolean = false
 
     constructor(context: Context) : this(context, null)
@@ -30,26 +30,45 @@ class BriefWeatherCompoundView : ConstraintLayout {
     fun setDailyWeather(dailyWeather: DailyWeather, isDaylight: Boolean) {
         this.dailyWeather = dailyWeather
         this.isDaylight = isDaylight
-        setupView()
+        setupDailyWeatherView()
     }
 
     fun getDailyWeather(): DailyWeather {
         return this.dailyWeather
     }
 
-    private fun setupView() {
+    private fun setupDailyWeatherView() {
         if (isDaylight) {
-            populateViewWithWeatherInfo(dailyWeather.date, dailyWeather.day)
+            populateViewWithWeatherInfo(
+                DateUtil.getFormattedDate(dailyWeather.date),
+                dailyWeather.day.tempmax,
+                dailyWeather.day.tempmin,
+                dailyWeather.day.phenomenon
+            )
         } else {
-            populateViewWithWeatherInfo(dailyWeather.date, dailyWeather.night)
+            populateViewWithWeatherInfo(
+                DateUtil.getFormattedDate(dailyWeather.date),
+                dailyWeather.night.tempmax,
+                dailyWeather.night.tempmin,
+                dailyWeather.night.phenomenon
+            )
         }
     }
 
-    private fun populateViewWithWeatherInfo(date: Date, dayOrNightInfo: WeatherInfo) {
-        date_tv.text = DateUtil.getFormattedDate(date)
-        temp_max_view.setTemperature(dayOrNightInfo.tempmax)
-        temp_min_view.setTemperature(dayOrNightInfo.tempmin)
-        phenomenon_tv.text = dayOrNightInfo.phenomenon
-        phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(dayOrNightInfo.phenomenon))
+    fun setPlace(dateString: String, place: Place) {
+        this.place = place
+        setupPlaceView(dateString)
+    }
+
+    private fun setupPlaceView(dateString: String) {
+        populateViewWithWeatherInfo(dateString, place.tempmax, place.tempmin, place.phenomenon)
+    }
+
+    private fun populateViewWithWeatherInfo(dateString: String, tempMax: Int, tempMin: Int?, phenomenon: String) {
+        date_tv.text = dateString
+        temp_max_view.setTemperature(tempMax)
+        temp_min_view.setTemperature(tempMin)
+        phenomenon_tv.text = phenomenon
+        phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(phenomenon))
     }
 }
