@@ -64,7 +64,7 @@ class BriefWeatherCompoundView : ConstraintLayout {
         populateViewWithWeatherInfo(dateString, place.tempmax, place.tempmin, place.phenomenon)
     }
 
-    private fun populateViewWithWeatherInfo(dateString: String, tempMax: Int, tempMin: Int?, phenomenon: String) {
+    private fun populateViewWithWeatherInfo(dateString: String, tempMax: Int?, tempMin: Int?, phenomenon: String) {
         date_tv.text = dateString
         temp_max_view.setTemperature(tempMax)
         temp_min_view.setTemperature(tempMin)

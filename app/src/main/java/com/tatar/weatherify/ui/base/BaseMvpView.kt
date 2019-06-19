@@ -8,4 +8,6 @@ interface BaseMvpView {
     fun displayLoadingMessage()
     fun displayErrorMessage()
     fun displayNoInternetWarning()
+    fun setDayBgImage()
+    fun setNightBgImage()
 }

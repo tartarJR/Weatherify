@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.tatar.weatherify.R
+import kotlinx.android.synthetic.main.activity_brief_weather.*
 
 abstract class BaseActivity : AppCompatActivity(), BaseMvpView {
 
@@ -62,5 +64,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseMvpView {
 
     override fun displayNoInternetWarning() {
         statusTextView?.text = getString(R.string.no_internet_connection_txt)
+    }
+
+    override fun setDayBgImage() {
+        weather_container.background = ContextCompat.getDrawable(this, R.drawable.bg_day)
+    }
+
+    override fun setNightBgImage() {
+        weather_container.background = ContextCompat.getDrawable(this, R.drawable.bg_night)
     }
 }

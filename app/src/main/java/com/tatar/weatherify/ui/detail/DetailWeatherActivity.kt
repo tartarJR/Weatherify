@@ -1,7 +1,7 @@
 package com.tatar.weatherify.ui.detail
 
+import android.content.Intent
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tatar.weatherify.App
 import com.tatar.weatherify.R
@@ -11,6 +11,7 @@ import com.tatar.weatherify.data.network.model.Wind
 import com.tatar.weatherify.di.detail.DaggerDetailComponent
 import com.tatar.weatherify.ui.base.BaseActivity
 import com.tatar.weatherify.ui.brief.BriefWeatherActivity
+import com.tatar.weatherify.ui.place.PlaceWeatherActivity
 import com.tatar.weatherify.util.DateUtil
 import com.tatar.weatherify.util.ViewUtil
 import kotlinx.android.synthetic.main.activity_detail_weather.*
@@ -35,7 +36,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
 
     override fun provideDependencies() {
         val detailComponent = DaggerDetailComponent.builder()
-            .searchActivity(this)
+            .detailWeatherActivity(this)
             .itemClickListener(this)
             .appComponent(App.appInstance.appComponent()).build()
 
@@ -135,16 +136,11 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
         day_night_switch.text = getString(R.string.day_night_switch_night_txt)
     }
 
-    override fun setBgColorToDay() {
-        main_container.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-    }
-
-    override fun setBgColorToNight() {
-        main_container.setBackgroundColor(ContextCompat.getColor(this, R.color.nightColor))
-    }
-
     override fun onItemClick(place: Place) {
-        // TODO place item click
+        val intent = Intent(this, PlaceWeatherActivity::class.java)
+        intent.putExtra(BUNDLE_KEY_SELECTED_PLACE_WEATHER, place)
+        intent.putExtra(BUNDLE_KEY_DATE, date_tv.text)
+        startActivity(intent)
     }
 
     private fun setDailyWeather(isDay: Boolean) {
@@ -152,5 +148,10 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
             intent?.extras?.getParcelable<DailyWeather>(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)
 
         dailyWeather?.let { detailWeatherMvpPresenter.displayDetailWeatherInformation(it, isDay) }
+    }
+
+    companion object {
+        const val BUNDLE_KEY_SELECTED_PLACE_WEATHER = "selected_place_weather"
+        const val BUNDLE_KEY_DATE = "date"
     }
 }

@@ -15,7 +15,7 @@ interface DetailComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun searchActivity(detailWeatherActivity: DetailWeatherActivity): Builder
+        fun detailWeatherActivity(detailWeatherActivity: DetailWeatherActivity): Builder
 
         @BindsInstance
         fun itemClickListener(itemClickListener: PlaceAdapter.ItemClickListener): Builder

@@ -13,21 +13,15 @@ interface DetailWeatherMvpView : BaseMvpView {
         phenomenon: String,
         weatherInfo: String
     )
-
     fun displayPlacesContainer(places: List<Place>)
     fun displayWindsContainer(winds: List<Wind>)
     fun displaySeaContainer(sea: String)
     fun displayPeipsiContainer(peipsi: String)
-
     fun hideWeatherInfoContainer()
     fun hidePlacesContainer()
     fun hideWindsContainer()
     fun hideSeaContainer()
     fun hidePeipsiContainer()
-
     fun setSwitchTextToDay()
     fun setSwitchTextToNight()
-
-    fun setBgColorToDay()
-    fun setBgColorToNight()
 }

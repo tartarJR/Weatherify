@@ -11,11 +11,11 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDay: Boolean) {
         if (isDay) {
-            detailWeatherMvpView?.setBgColorToDay()
+            detailWeatherMvpView?.setDayBgImage()
             detailWeatherMvpView?.setSwitchTextToDay()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
         } else {
-            detailWeatherMvpView?.setBgColorToNight()
+            detailWeatherMvpView?.setNightBgImage()
             detailWeatherMvpView?.setSwitchTextToNight()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
         }
