@@ -8,5 +8,5 @@ data class Place(
     var name: String,
     var phenomenon: String,
     var tempmin: Int?,
-    var tempmax: Int
+    var tempmax: Int?
 ) : Parcelable

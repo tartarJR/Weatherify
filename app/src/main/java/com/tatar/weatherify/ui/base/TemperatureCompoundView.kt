@@ -25,6 +25,6 @@ class TemperatureCompoundView : ConstraintLayout {
     }
 
     private fun setupView() {
-        temperature_tv.text = if (temperature == null) "--" else temperature.toString()
+        temperature_tv.text = if (temperature == null) context.getString(R.string.no_temperature_available_txt) else temperature.toString()
     }
 }

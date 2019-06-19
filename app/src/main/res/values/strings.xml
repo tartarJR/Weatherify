@@ -35,5 +35,6 @@
     <string name="direction_tv_txt">Direction: %1$s</string>
     <string name="max_speed_tv_txt">Max Speed: %1$d m/s</string>
     <string name="min_speed_tv_txt">Min Speed: %1$d m/s</string>
+    <string name="no_temperature_available_txt">--</string>
 
 </resources>
