@@ -72,4 +72,8 @@ dependencies {
     /* RX */
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+
+    /* To compute the local sunrise and sunset at a given latitude/longitude and date combination */
+    implementation 'com.luckycatlabs:SunriseSunsetCalculator:1.2'
+
 }
