@@ -14,9 +14,10 @@
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/brief_weather_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_img">
+            tools:background="@drawable/bg_day">
 
             <TextView
                 android:id="@+id/four_days_weather_title_tv"

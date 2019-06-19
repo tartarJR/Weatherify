@@ -9,4 +9,6 @@ interface BriefWeatherMvpView : BaseMvpView {
     fun hideFourDaysBriefWeatherInfo()
     fun showCachedDataDisplayedToast()
     fun startDetailWeatherActivity(dailyWeather: DailyWeather)
+    fun setDayBgImage()
+    fun setNightBgImage()
 }

@@ -3,11 +3,12 @@ package com.tatar.weatherify.ui.brief
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.tatar.weatherify.App
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
-import com.tatar.weatherify.di.brief.component.DaggerBriefComponent
+import com.tatar.weatherify.di.brief.DaggerBriefComponent
 import com.tatar.weatherify.ui.base.BaseActivity
 import com.tatar.weatherify.ui.detail.DetailWeatherActivity
 import kotlinx.android.synthetic.main.activity_brief_weather.*
@@ -109,6 +110,14 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         intent.putExtra(BUNDLE_KEY_SELECTED_DAILY_WEATHER, dailyWeather)
         startActivity(intent)
+    }
+
+    override fun setDayBgImage() {
+        brief_weather_container.background = ContextCompat.getDrawable(this, R.drawable.bg_day)
+    }
+
+    override fun setNightBgImage() {
+        brief_weather_container.background = ContextCompat.getDrawable(this, R.drawable.bg_night)
     }
 
     companion object {

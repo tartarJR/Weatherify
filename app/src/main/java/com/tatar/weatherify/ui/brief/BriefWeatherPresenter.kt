@@ -41,6 +41,11 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
+        val isDay = sunriseSunsetUtil.isDayLight()
+
+        if (isDay) briefWeatherMvpView?.setDayBgImage()
+        else briefWeatherMvpView?.setNightBgImage()
+
         briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
         showLoadingContent()
 
@@ -55,7 +60,7 @@ class BriefWeatherPresenter @Inject constructor(
                             hideLoadingContent()
                             briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
                                 weatherForecastResponse,
-                                sunriseSunsetUtil.isDayLight()
+                                isDay
                             )
                             sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
                         },
@@ -77,7 +82,7 @@ class BriefWeatherPresenter @Inject constructor(
                     briefWeatherMvpView?.showCachedDataDisplayedToast()
                     briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
                         sharedPreferencesManager.getCachedWeatherForecastData()!!,
-                        sunriseSunsetUtil.isDayLight()
+                        isDay
                     )
                 }
             }
