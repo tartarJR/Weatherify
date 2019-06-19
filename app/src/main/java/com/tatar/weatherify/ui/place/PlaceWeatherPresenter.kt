@@ -22,7 +22,6 @@ class PlaceWeatherPresenter @Inject constructor(
         if (this.placeWeatherMvpView != null) {
             placeWeatherMvpView?.displayPlaceWeatherInfo(dateString, place)
         } else {
-            showErrorMessage()
             Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
         }
     }
@@ -33,10 +32,5 @@ class PlaceWeatherPresenter @Inject constructor(
 
     override fun detachView() {
         this.placeWeatherMvpView = null
-    }
-
-    private fun showErrorMessage() {
-        placeWeatherMvpView?.displayErrorMessage()
-        placeWeatherMvpView?.showStatusTv()
     }
 }

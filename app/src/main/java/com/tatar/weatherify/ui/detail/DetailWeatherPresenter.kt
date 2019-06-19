@@ -2,6 +2,8 @@ package com.tatar.weatherify.ui.detail
 
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherInfo
+import com.tatar.weatherify.ui.base.BaseMvpPresenter
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -10,22 +12,30 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
     private var detailWeatherMvpView: DetailWeatherMvpView? = null
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
-        if (isDayLight) {
-            detailWeatherMvpView?.setDayBgImage()
-            detailWeatherMvpView?.setSwitchTextToDay()
-            displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
+        if (this.detailWeatherMvpView != null) {
+            if (isDayLight) {
+                detailWeatherMvpView?.setDayBgImage()
+                detailWeatherMvpView?.setSwitchTextToDay()
+                displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
+            } else {
+                detailWeatherMvpView?.setNightBgImage()
+                detailWeatherMvpView?.setSwitchTextToNight()
+                displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
+            }
         } else {
-            detailWeatherMvpView?.setNightBgImage()
-            detailWeatherMvpView?.setSwitchTextToNight()
-            displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
+            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
         }
     }
 
     override fun initDayNightSwitch(isDayLight: Boolean) {
-        detailWeatherMvpView?.setDayNightSwitchChecked(isDayLight)
+        if (this.detailWeatherMvpView != null) {
+            detailWeatherMvpView?.setDayNightSwitchChecked(isDayLight)
 
-        if (isDayLight) detailWeatherMvpView?.setSwitchTextToDay()
-        else detailWeatherMvpView?.setSwitchTextToNight()
+            if (isDayLight) detailWeatherMvpView?.setSwitchTextToDay()
+            else detailWeatherMvpView?.setSwitchTextToNight()
+        } else {
+            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
+        }
     }
 
     override fun attachView(view: DetailWeatherMvpView?) {

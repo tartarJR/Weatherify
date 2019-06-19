@@ -41,16 +41,16 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
-        val isDay = sunriseSunsetUtil.isDayLight()
-
-        if (isDay) briefWeatherMvpView?.setDayBgImage()
-        else briefWeatherMvpView?.setNightBgImage()
-
-        briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
-        showLoadingContent()
-
-        // TODO manage null view situation better
         if (this.briefWeatherMvpView != null) {
+
+            val isDay = sunriseSunsetUtil.isDayLight()
+
+            if (isDay) briefWeatherMvpView?.setDayBgImage()
+            else briefWeatherMvpView?.setNightBgImage()
+
+            briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
+            showLoadingContent()
+
             if (networkUtil.hasInternetConnection()) {
                 subscriptions.add(weatherApi.getFourDaysWeatherForecast()
                     .subscribeOn(Schedulers.io())
@@ -68,7 +68,8 @@ class BriefWeatherPresenter @Inject constructor(
                             Timber.e(error.localizedMessage)
                             briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
                             hideLoadingContent()
-                            showErrorMessage()
+                            briefWeatherMvpView?.displayErrorMessage()
+                            briefWeatherMvpView?.showStatusTv()
                         }
                     ))
             } else {
@@ -87,13 +88,16 @@ class BriefWeatherPresenter @Inject constructor(
                 }
             }
         } else {
-            showErrorMessage()
             Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
         }
     }
 
     override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
-        briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
+        if (this.briefWeatherMvpView != null) {
+            briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
+        } else {
+            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
+        }
     }
 
     private fun showLoadingContent() {
@@ -105,10 +109,5 @@ class BriefWeatherPresenter @Inject constructor(
     private fun hideLoadingContent() {
         briefWeatherMvpView?.hideStatusTv()
         briefWeatherMvpView?.hideProgressBar()
-    }
-
-    private fun showErrorMessage() {
-        briefWeatherMvpView?.displayErrorMessage()
-        briefWeatherMvpView?.showStatusTv()
     }
 }
