@@ -16,6 +16,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.place.PlaceWeatherActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".ui.detail.DetailWeatherActivity"
+            android:theme="@style/ChildTheme" />
+        <activity
             android:name=".ui.detail.DetailWeatherActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".ui.brief.BriefWeatherActivity"
