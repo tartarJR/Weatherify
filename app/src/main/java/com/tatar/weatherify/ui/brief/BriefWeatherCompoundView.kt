@@ -36,7 +36,8 @@ class BriefWeatherCompoundView : ConstraintLayout {
 
     private fun setupView() {
         date_tv.text = DateUtil.getFormattedDate(dailyWeather.date)
-        temperature_max_tv.text = dailyWeather.day.tempmax.toString()
+        temp_max_view.setTemperature(dailyWeather.day.tempmax)
+        temp_min_view.setTemperature(dailyWeather.day.tempmin)
         phenomenon_tv.text = dailyWeather.day.phenomenon
         phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(dailyWeather.day.phenomenon))
     }

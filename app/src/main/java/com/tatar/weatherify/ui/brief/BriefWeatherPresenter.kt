@@ -2,7 +2,6 @@ package com.tatar.weatherify.ui.brief
 
 import com.tatar.weatherify.data.network.WeatherApi
 import com.tatar.weatherify.data.network.model.DailyWeather
-import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.ui.base.BaseMvpPresenter
 import com.tatar.weatherify.util.NetworkUtil
@@ -17,8 +16,7 @@ class BriefWeatherPresenter @Inject constructor(
     private val weatherApi: WeatherApi,
     private val sharedPreferencesManager: SharedPreferencesManager,
     private val networkUtil: NetworkUtil
-) :
-    BriefWeatherMvpPresenter {
+) : BriefWeatherMvpPresenter {
 
     private var briefWeatherMvpView: BriefWeatherMvpView? = null
     private val subscriptions = CompositeDisposable()
@@ -41,7 +39,7 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
-        hideWeatherForecastContent()
+        briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
         showLoadingContent()
 
         // TODO manage null view situation better
@@ -53,26 +51,26 @@ class BriefWeatherPresenter @Inject constructor(
                     .subscribe(
                         { weatherForecastResponse ->
                             hideLoadingContent()
-                            showWeatherForecastContent(weatherForecastResponse)
+                            briefWeatherMvpView?.showFourDaysBriefWeatherInfo(weatherForecastResponse)
                             sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
                         },
                         { error ->
                             Timber.e(error.localizedMessage)
-                            hideWeatherForecastContent()
+                            briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
                             hideLoadingContent()
                             showErrorMessage()
                         }
                     ))
             } else {
                 if (sharedPreferencesManager.getCachedWeatherForecastData() == null) {
-                    hideWeatherForecastContent()
+                    briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
                     hideLoadingContent()
                     briefWeatherMvpView?.displayNoInternetWarning()
                     briefWeatherMvpView?.showStatusTv()
                 } else {
                     hideLoadingContent()
                     briefWeatherMvpView?.showCachedDataDisplayedToast()
-                    showWeatherForecastContent(sharedPreferencesManager.getCachedWeatherForecastData()!!)
+                    briefWeatherMvpView?.showFourDaysBriefWeatherInfo(sharedPreferencesManager.getCachedWeatherForecastData()!!)
                 }
             }
         } else {
@@ -94,17 +92,6 @@ class BriefWeatherPresenter @Inject constructor(
     private fun hideLoadingContent() {
         briefWeatherMvpView?.hideStatusTv()
         briefWeatherMvpView?.hideProgressBar()
-    }
-
-    private fun showWeatherForecastContent(weatherForecastResponse: WeatherForecastResponse) {
-        briefWeatherMvpView?.displayWeatherForecastInformation(weatherForecastResponse)
-        briefWeatherMvpView?.showTitle()
-        briefWeatherMvpView?.showBriefWeatherCompoundViews()
-    }
-
-    private fun hideWeatherForecastContent() {
-        briefWeatherMvpView?.hideTitle()
-        briefWeatherMvpView?.hideBriefWeatherCompoundViews()
     }
 
     private fun showErrorMessage() {

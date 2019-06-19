@@ -17,80 +17,86 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="0dp"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/temperature_max_tv"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Sun, 09 Jun 2019" />
 
     <TextView
-        android:id="@+id/temperature_max_tv"
-        android:layout_width="wrap_content"
+        android:id="@+id/temp_max_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/temp_max_label_txt"
         android:textColor="@android:color/white"
-        android:textSize="54sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/degree_icon_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="9" />
-
-    <ImageView
-        android:id="@+id/degree_icon_iv"
-        android:layout_width="10dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:contentDescription="@string/degree_icon_iv_description"
-        app:layout_constraintEnd_toStartOf="@+id/celsius_symbol_tv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/temperature_max_tv"
-        app:layout_constraintTop_toTopOf="@+id/temperature_max_tv"
-        app:srcCompat="@drawable/degree" />
-
-    <TextView
-        android:id="@+id/celsius_symbol_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="0dp"
-        android:text="@string/celsius_symbol_tv_txt"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/degree_icon_iv"
+        app:layout_constraintBottom_toTopOf="@+id/temp_max_view"
         app:layout_constraintEnd_toStartOf="@+id/phenomenon_iv"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/degree_icon_iv"
-        app:layout_constraintTop_toTopOf="@+id/degree_icon_iv" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_tv"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.tatar.weatherify.ui.base.TemperatureCompoundView
+        android:id="@+id/temp_max_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/phenomenon_tv"
+        app:layout_constraintEnd_toEndOf="@+id/temp_max_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/temp_max_label"
+        app:layout_constraintTop_toBottomOf="@+id/temp_max_label" />
+
+    <ImageView
+        android:id="@+id/phenomenon_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/phenomenon_iv_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/cloudy_night" />
 
     <TextView
         android:id="@+id/phenomenon_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="0dp"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperature_max_tv"
+        app:layout_constraintTop_toBottomOf="@+id/phenomenon_iv"
         tools:text="Cloudy with clear spell" />
 
-    <ImageView
-        android:id="@+id/phenomenon_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="0dp"
-        android:contentDescription="@string/phenomenon_iv_description"
-        app:layout_constraintBottom_toBottomOf="@+id/temperature_max_tv"
+    <TextView
+        android:id="@+id/temp_min_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/temp_min_label_txt"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/temp_min_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/celsius_symbol_tv"
-        app:layout_constraintTop_toTopOf="@+id/temperature_max_tv"
-        tools:srcCompat="@drawable/cloudy_night" />
+        app:layout_constraintStart_toEndOf="@+id/phenomenon_iv"
+        app:layout_constraintTop_toBottomOf="@+id/date_tv"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.tatar.weatherify.ui.base.TemperatureCompoundView
+        android:id="@+id/temp_min_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/phenomenon_tv"
+        app:layout_constraintEnd_toEndOf="@+id/temp_min_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/temp_min_label"
+        app:layout_constraintTop_toBottomOf="@+id/temp_min_label" />
 </merge>
