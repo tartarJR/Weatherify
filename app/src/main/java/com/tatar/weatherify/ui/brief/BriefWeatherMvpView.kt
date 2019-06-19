@@ -8,5 +8,5 @@ interface BriefWeatherMvpView : BaseMvpView {
     fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse, isDayLight: Boolean)
     fun hideFourDaysBriefWeatherInfo()
     fun showCachedDataDisplayedToast()
-    fun startDetailWeatherActivity(dailyWeather: DailyWeather)
+    fun startDetailWeatherActivity(dailyWeather: DailyWeather, isDayLight: Boolean)
 }

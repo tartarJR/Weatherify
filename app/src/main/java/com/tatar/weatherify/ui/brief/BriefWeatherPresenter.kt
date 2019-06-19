@@ -93,7 +93,7 @@ class BriefWeatherPresenter @Inject constructor(
     }
 
     override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
-        briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather)
+        briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
     }
 
     private fun showLoadingContent() {

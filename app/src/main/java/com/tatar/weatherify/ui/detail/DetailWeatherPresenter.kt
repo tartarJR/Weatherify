@@ -9,8 +9,8 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
 
     private var detailWeatherMvpView: DetailWeatherMvpView? = null
 
-    override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDay: Boolean) {
-        if (isDay) {
+    override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
+        if (isDayLight) {
             detailWeatherMvpView?.setDayBgImage()
             detailWeatherMvpView?.setSwitchTextToDay()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
@@ -19,6 +19,13 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
             detailWeatherMvpView?.setSwitchTextToNight()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
         }
+    }
+
+    override fun initDayNightSwitch(isDayLight: Boolean) {
+        detailWeatherMvpView?.setDayNightSwitchChecked(isDayLight)
+
+        if (isDayLight) detailWeatherMvpView?.setSwitchTextToDay()
+        else detailWeatherMvpView?.setSwitchTextToNight()
     }
 
     override fun attachView(view: DetailWeatherMvpView?) {

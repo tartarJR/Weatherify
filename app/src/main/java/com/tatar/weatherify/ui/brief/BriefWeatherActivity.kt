@@ -104,13 +104,15 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
         Toast.makeText(this, getString(R.string.cached_data_displayed_toast_txt), Toast.LENGTH_LONG).show()
     }
 
-    override fun startDetailWeatherActivity(dailyWeather: DailyWeather) {
+    override fun startDetailWeatherActivity(dailyWeather: DailyWeather, isDayLight: Boolean) {
         val intent = Intent(this, DetailWeatherActivity::class.java)
         intent.putExtra(BUNDLE_KEY_SELECTED_DAILY_WEATHER, dailyWeather)
+        intent.putExtra(BUNDLE_KEY_IS_DAY_LIGHT, isDayLight)
         startActivity(intent)
     }
 
     companion object {
         const val BUNDLE_KEY_SELECTED_DAILY_WEATHER = "selected_daily_weather"
+        const val BUNDLE_KEY_IS_DAY_LIGHT = "is_day_light"
     }
 }

@@ -44,8 +44,11 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
     }
 
     override fun initViews() {
+
+        detailWeatherMvpPresenter.initDayNightSwitch(getIsDayLight())
+
         day_night_switch.setOnCheckedChangeListener { _, isDay ->
-            setDailyWeather(isDay)
+            detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), isDay)
         }
 
         place_recycler_view.layoutManager = LinearLayoutManager(
@@ -65,7 +68,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
 
     override fun init() {
         detailWeatherMvpPresenter.attachView(this)
-        setDailyWeather(true)
+        detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), getIsDayLight())
     }
 
     override fun releasePresenterResources() {
@@ -136,6 +139,10 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
         day_night_switch.text = getString(R.string.day_night_switch_night_txt)
     }
 
+    override fun setDayNightSwitchChecked(isDayLight: Boolean) {
+        day_night_switch.isChecked = isDayLight
+    }
+
     override fun onItemClick(place: Place) {
         val intent = Intent(this, PlaceWeatherActivity::class.java)
         intent.putExtra(BUNDLE_KEY_SELECTED_PLACE_WEATHER, place)
@@ -143,11 +150,12 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
         startActivity(intent)
     }
 
-    private fun setDailyWeather(isDay: Boolean) {
-        val dailyWeather =
-            intent?.extras?.getParcelable<DailyWeather>(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)
+    private fun getDailyWeather(): DailyWeather {
+        return intent?.extras?.getParcelable(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)!!
+    }
 
-        dailyWeather?.let { detailWeatherMvpPresenter.displayDetailWeatherInformation(it, isDay) }
+    private fun getIsDayLight(): Boolean {
+        return intent?.extras?.getBoolean(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)!!
     }
 
     companion object {

@@ -19,14 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:checked="true"
-            android:text="@string/day_night_switch_day_txt"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:switchPadding="5dp" />
+            app:switchPadding="5dp"
+            tools:text="@string/day_night_switch_day_txt" />
 
         <TextView
             android:id="@+id/date_tv"
