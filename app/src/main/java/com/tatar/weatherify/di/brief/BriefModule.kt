@@ -1,6 +1,6 @@
-package com.tatar.weatherify.di.brief.module
+package com.tatar.weatherify.di.brief
 
-import com.tatar.weatherify.di.brief.scope.PerBrief
+import com.tatar.weatherify.di.brief.PerBrief
 import com.tatar.weatherify.ui.brief.BriefWeatherMvpPresenter
 import com.tatar.weatherify.ui.brief.BriefWeatherPresenter
 import dagger.Binds

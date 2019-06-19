@@ -1,4 +1,4 @@
-package com.tatar.weatherify.di.brief.scope
+package com.tatar.weatherify.di.brief
 
 import javax.inject.Scope
 

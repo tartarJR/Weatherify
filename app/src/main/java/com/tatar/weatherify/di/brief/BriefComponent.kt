@@ -1,8 +1,6 @@
-package com.tatar.weatherify.di.brief.component
+package com.tatar.weatherify.di.brief
 
 import com.tatar.weatherify.di.app.component.AppComponent
-import com.tatar.weatherify.di.brief.module.BriefModule
-import com.tatar.weatherify.di.brief.scope.PerBrief
 import com.tatar.weatherify.ui.brief.BriefWeatherActivity
 import dagger.BindsInstance
 import dagger.Component
