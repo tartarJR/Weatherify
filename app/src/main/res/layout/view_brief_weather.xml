@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/date_tv"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.tatar.weatherify.ui.base.TemperatureCompoundView
+    <com.tatar.weatherify.ui.base.custom.TemperatureCompoundView
         android:id="@+id/temp_max_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/date_tv"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.tatar.weatherify.ui.base.TemperatureCompoundView
+    <com.tatar.weatherify.ui.base.custom.TemperatureCompoundView
         android:id="@+id/temp_min_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
