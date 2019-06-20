@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weatherify</string>
+
+    <string name="locale">et</string>
+
+    <!--Common-->
+    <string name="no_internet_connection_txt">Veenduge, et teil on Interneti-ühendus ja proovige uuesti</string>
+    <string name="error_txt">Ups! Ilmaprognoosi teavet ei õnnestu praegu alla laadida, proovige hiljem uuesti</string>
+
+    <!--daily weather brief compound view-->
+    <string name="degree_icon_iv_description">Temperatuuri kraadi ikoon</string>
+    <string name="phenomenon_iv_description">Fenomooni ikoon</string>
+    <string name="celsius_symbol_tv_txt">C</string>
+
+    <!--brief weather activity-->
+    <string name="four_days_weather_title_tv_txt">Eesti 4 päeva ilmateade</string>
+    <string name="brief_weather_hint_tv_txt">Valige üks lisateabe saamiseks</string>
+    <string name="status_tv_retrieving_txt">Nelja päeva ilmaprognoosi teabe hankimine</string>
+    <string name="cached_data_displayed_toast_txt">Internetiühendust ei kuvata, kuvades uusimat kättesaadavat ilmateavet</string>
+
+    <!--detail weather activity-->
+    <string name="day_night_switch_day_txt">Päev</string>
+    <string name="day_night_switch_night_txt">Öö</string>
+    <string name="temp_max_label_txt">Maksimaalne temperatuur</string>
+    <string name="temp_min_label_txt">Minimaalne temperatuur</string>
+    <string name="sea_label_txt">Meri</string>
+    <string name="peipsi_label_txt">Peipsi</string>
+    <string name="places_label_txt">Kohad</string>
+    <string name="places_hint_tv_txt">Lisateabe vaatamiseks valige linn</string>
+    <string name="winds_label_txt">Tuuled</string>
+
+    <!--city item layout-->
+    <string name="phenomenon_iv_img_description">Fenomooni ikoon</string>
+
+    <!--wind item layout-->
+    <string name="direction_tv_txt">Suund: %1$s</string>
+    <string name="max_speed_tv_txt">Max kiirus: %1$d m / s</string>
+    <string name="min_speed_tv_txt">Min Kiirus: %1$d m/s</string>
+
+    <string name="no_temperature_available_txt">--</string>
+
+
+</resources>

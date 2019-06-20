@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Weatherify</string>
 
+    <string name="locale">en</string>
+
     <!--Common-->
     <string name="no_internet_connection_txt">Please make sure you have an internet connection and try again</string>
     <string name="error_txt">Ups! Unable to retrieve weather forecast information now, please try again later</string>
@@ -8,7 +10,6 @@
     <!--daily weather brief compound view-->
     <string name="degree_icon_iv_description">Temperature degree icon</string>
     <string name="phenomenon_iv_description">Phenomenon icon</string>
-    <string name="weather_detail_btn_txt">SEE MORE WEATHER INFORMATION</string>
     <string name="celsius_symbol_tv_txt">C</string>
 
     <!--brief weather activity-->
@@ -25,8 +26,8 @@
     <string name="sea_label_txt">Sea</string>
     <string name="peipsi_label_txt">Peipsi</string>
     <string name="places_label_txt">Places</string>
-    <string name="places_hint_tv_txt">Tap a city to see more information</string>
-    <string name="winds_label_txt">Winds</string>
+    <string name="places_hint_tv_txt">Select a city to see more information</string>
+    <string name="winds_label_txt">Wind</string>
 
     <!--city item layout-->
     <string name="phenomenon_iv_img_description">Phenomenon icon</string>
@@ -35,6 +36,7 @@
     <string name="direction_tv_txt">Direction: %1$s</string>
     <string name="max_speed_tv_txt">Max Speed: %1$d m/s</string>
     <string name="min_speed_tv_txt">Min Speed: %1$d m/s</string>
+
     <string name="no_temperature_available_txt">--</string>
 
 </resources>

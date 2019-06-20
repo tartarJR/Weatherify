@@ -82,7 +82,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
         phenomenon: String,
         weatherInfo: String
     ) {
-        date_tv.text = DateUtil.getFormattedDate(date)
+        date_tv.text = DateUtil.getFormattedDate(date, getString(R.string.locale))
         temp_max_view.setTemperature(tempMax)
         temp_min_view.setTemperature(tempMin)
         phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(phenomenon))

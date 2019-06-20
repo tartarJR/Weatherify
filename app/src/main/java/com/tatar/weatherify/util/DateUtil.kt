@@ -4,11 +4,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtil {
-
-    private val dateFormat = SimpleDateFormat("EE, dd MMM yyyy", Locale.ENGLISH)
-
     @JvmStatic
-    fun getFormattedDate(date: Date): String {
-        return dateFormat.format(date)
+    fun getFormattedDate(date: Date, localeCode: String): String {
+        return SimpleDateFormat("EE, dd MMM yyyy", Locale(localeCode)).format(date)
     }
 }
