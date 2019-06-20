@@ -54,6 +54,7 @@ dependencies {
     testImplementation "org.powermock:powermock-core:$powermock_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.6.0"
 
     /* Logging */
     implementation 'com.jakewharton.timber:timber:4.7.1'
