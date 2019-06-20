@@ -14,12 +14,13 @@ class PlaceWeatherPresenter @Inject constructor(
 
     override fun displayPlaceWeatherInformation(dateString: String, place: Place) {
 
-        val isDay = sunriseSunsetUtil.isDayLight()
-
-        if (isDay) placeWeatherMvpView?.setDayBgImage()
-        else placeWeatherMvpView?.setNightBgImage()
-
         if (this.placeWeatherMvpView != null) {
+
+            val isDay = sunriseSunsetUtil.isDayLight()
+
+            if (isDay) placeWeatherMvpView?.setDayBgImage()
+            else placeWeatherMvpView?.setNightBgImage()
+
             placeWeatherMvpView?.displayPlaceWeatherInfo(dateString, place)
         } else {
             Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
