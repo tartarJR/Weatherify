@@ -29,12 +29,12 @@
         android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:contentDescription="@string/degree_icon_iv_description"
         app:layout_constraintEnd_toStartOf="@+id/celsius_symbol_tv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/temperature_tv"
         app:layout_constraintTop_toTopOf="@+id/temperature_tv"
-        app:srcCompat="@drawable/degree" />
+        app:srcCompat="@drawable/degree"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/celsius_symbol_tv"

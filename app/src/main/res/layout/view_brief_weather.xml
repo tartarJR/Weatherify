@@ -54,12 +54,12 @@
         android:id="@+id/phenomenon_iv"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:contentDescription="@string/phenomenon_iv_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/cloudy_night" />
+        tools:ignore="ContentDescription"
+        tools:srcCompat="@drawable/clear" />
 
     <TextView
         android:id="@+id/phenomenon_tv"
@@ -101,4 +101,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/temp_min_label"
         app:layout_constraintTop_toBottomOf="@+id/temp_min_label" />
+
 </merge>
