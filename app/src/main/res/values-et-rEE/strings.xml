@@ -8,10 +8,9 @@
     <string name="no_internet_connection_txt">Veenduge, et teil on Interneti-ühendus ja proovige uuesti</string>
     <string name="error_txt">Ups! Ilmaprognoosi teavet ei õnnestu praegu alla laadida, proovige hiljem uuesti</string>
 
-    <!--daily weather brief compound view-->
-    <string name="degree_icon_iv_description">Temperatuuri kraadi ikoon</string>
-    <string name="phenomenon_iv_description">Fenomooni ikoon</string>
+    <!--temp compound view-->
     <string name="celsius_symbol_tv_txt">C</string>
+    <string name="no_temperature_available_txt">--</string>
 
     <!--brief weather activity-->
     <string name="four_days_weather_title_tv_txt">Eesti 4 päeva ilmateade</string>
@@ -31,14 +30,14 @@
     <string name="winds_label_txt">Tuuled</string>
 
     <!--city item layout-->
-    <string name="phenomenon_iv_img_description">Fenomooni ikoon</string>
+    <string name="max_temp_tv_txt">Max Temp: %1$d\u00B0C</string>
+    <string name="min_temp_tv_txt">Min Temp: %1$d\u00B0C</string>
+    <string name="max_temp_tv_na_txt">Max Temp: —</string>
+    <string name="min_temp_tv_na_txt">Min Temp: —</string>
 
     <!--wind item layout-->
     <string name="direction_tv_txt">Suund: %1$s</string>
     <string name="max_speed_tv_txt">Max kiirus: %1$d m / s</string>
     <string name="min_speed_tv_txt">Min Kiirus: %1$d m/s</string>
-
-    <string name="no_temperature_available_txt">--</string>
-
 
 </resources>
