@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Wind
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.wind_item.*
+import kotlinx.android.synthetic.main.wind_adapter_item.*
 import javax.inject.Inject
 
 class WindAdapter @Inject constructor() : RecyclerView.Adapter<WindAdapter.PlaceViewHolder>() {
@@ -15,7 +15,7 @@ class WindAdapter @Inject constructor() : RecyclerView.Adapter<WindAdapter.Place
     private var winds: List<Wind> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.wind_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.wind_adapter_item, parent, false)
         return PlaceViewHolder(view)
     }
 

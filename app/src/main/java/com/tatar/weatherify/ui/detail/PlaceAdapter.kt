@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Place
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.place_weather_item.*
+import kotlinx.android.synthetic.main.place_adapter_item.*
 import javax.inject.Inject
 
 class PlaceAdapter @Inject constructor(private val itemClickListener: ItemClickListener) :
@@ -16,7 +16,7 @@ class PlaceAdapter @Inject constructor(private val itemClickListener: ItemClickL
     private var places: List<Place> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.place_weather_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.place_adapter_item, parent, false)
         return PlaceViewHolder(view)
     }
 
