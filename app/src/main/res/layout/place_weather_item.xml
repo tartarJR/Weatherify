@@ -14,8 +14,23 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/place_name_tv"
-            android:layout_width="match_parent"
+            android:id="@+id/name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tartu" />
+
+        <TextView
+            android:id="@+id/max_temp_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -25,28 +40,23 @@
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Kuressaare" />
-
-        <ImageView
-            android:id="@+id/phenomenon_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/phenomenon_iv_img_description"
-            app:layout_constraintEnd_toEndOf="@+id/place_name_tv"
-            app:layout_constraintStart_toStartOf="@+id/place_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/place_name_tv"
-            app:srcCompat="@drawable/sunny" />
+            app:layout_constraintTop_toBottomOf="@+id/name_tv"
+            tools:text="@string/max_temp_tv_na_txt" />
 
         <TextView
-            android:id="@+id/phenomenon_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/min_temp_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@+id/phenomenon_iv"
-            app:layout_constraintStart_toStartOf="@+id/phenomenon_iv"
-            app:layout_constraintTop_toBottomOf="@+id/phenomenon_iv"
-            tools:text="Sunny" />
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_tv"
+            tools:text="@string/min_temp_tv_na_txt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
