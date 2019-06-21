@@ -2,41 +2,42 @@ package com.tatar.weatherify.util
 
 import com.tatar.weatherify.R
 
+
 object ViewUtil {
 
     // TODO update corresponding images properly
     // TODO use static variables or enums for phenomenons
     @JvmStatic
     fun getWeatherIconByPhenomenon(phenomenon: String) = when (phenomenon) {
-        "Clear" -> R.drawable.sunny
-        "Few clouds" -> R.drawable.partly_cloudy
-        "Variable clouds" -> R.drawable.cloudy
-        "Cloudy with clear spells" -> R.drawable.cloudy
+        "Clear" -> R.drawable.clear
+        "Few clouds" -> R.drawable.few_clouds
+        "Variable clouds" -> R.drawable.variable_clouds
+        "Cloudy with clear spells" -> R.drawable.coudy_with_clear_spells
         "Cloudy" -> R.drawable.cloudy
-        "Light snow shower" -> R.drawable.snow
-        "Moderate snow shower" -> R.drawable.snow
-        "Heavy snow shower" -> R.drawable.snow
-        "Light shower" -> R.drawable.snow
-        "Moderate shower" -> R.drawable.clear_day
-        "Heavy shower" -> R.drawable.clear_day
-        "Light rain" -> R.drawable.rain
-        "Moderate rain" -> R.drawable.rain
-        "Heavy rain" -> R.drawable.rain
-        "Risk of glaze" -> R.drawable.clear_day
-        "Light sleet" -> R.drawable.sleet
-        "Moderate sleet" -> R.drawable.sleet
-        "Light snowfall" -> R.drawable.clear_day
-        "Moderate snowfall" -> R.drawable.clear_day
-        "Heavy snowfall" -> R.drawable.clear_day
-        "Snowstorm" -> R.drawable.clear_day
-        "Drifting snow" -> R.drawable.clear_day
-        "Hail" -> R.drawable.clear_day
-        "Mist" -> R.drawable.clear_day
+        "Light snow shower" -> R.drawable.light_snow_shower
+        "Moderate snow shower" -> R.drawable.moderate_snow_shower
+        "Heavy snow shower" -> R.drawable.heavy_snow_shower
+        "Light shower" -> R.drawable.light_snow_shower
+        "Moderate shower" -> R.drawable.moderate_shower
+        "Heavy shower" -> R.drawable.heavy_shower
+        "Light rain" -> R.drawable.light_rain
+        "Moderate rain" -> R.drawable.moderate_rain
+        "Heavy rain" -> R.drawable.heavy_rain
+        "Risk of glaze" -> R.drawable.risk_of_glaze
+        "Light sleet" -> R.drawable.light_sleet
+        "Moderate sleet" -> R.drawable.moderatae_sleet
+        "Light snowfall" -> R.drawable.light_snowfall
+        "Moderate snowfall" -> R.drawable.moderatae_snowfall
+        "Heavy snowfall" -> R.drawable.heavy_snowfall
+        "Snowstorm" -> R.drawable.snow_storm
+        "Drifting snow" -> R.drawable.drifting_snow
+        "Hail" -> R.drawable.hail
+        "Mist" -> R.drawable.mist
         "Fog" -> R.drawable.fog
-        "Thunder" -> R.drawable.clear_day
-        "Thunderstorm" -> R.drawable.clear_day
+        "Thunder" -> R.drawable.thunder
+        "Thunderstorm" -> R.drawable.thunderstorm
         else -> {
-            R.drawable.clear_day
+            throw UnsupportedOperationException("Not supported yet.")
         }
     }
 }
