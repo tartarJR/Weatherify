@@ -44,7 +44,6 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
     }
 
     override fun initViews() {
-
         detailWeatherMvpPresenter.initDayNightSwitch(getIsDayLight())
 
         day_night_switch.setOnCheckedChangeListener { _, isDay ->
@@ -155,7 +154,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
     }
 
     private fun getIsDayLight(): Boolean {
-        return intent?.extras?.getBoolean(BriefWeatherActivity.BUNDLE_KEY_SELECTED_DAILY_WEATHER)!!
+        return intent?.extras?.getBoolean(BriefWeatherActivity.BUNDLE_KEY_IS_DAY_LIGHT)!!
     }
 
     companion object {
