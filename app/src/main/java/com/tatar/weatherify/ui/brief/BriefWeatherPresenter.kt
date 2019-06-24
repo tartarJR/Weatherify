@@ -18,7 +18,7 @@ class BriefWeatherPresenter @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager,
     private val networkUtil: NetworkUtil,
     private val sunriseSunsetUtil: SunriseSunsetUtil
-) : BriefWeatherMvpPresenter, BasePresenter<BriefWeatherMvpView>() {
+) : BriefWeatherContract.Presenter, BasePresenter<BriefWeatherContract.View>() {
 
     private val subscriptions = CompositeDisposable()
 

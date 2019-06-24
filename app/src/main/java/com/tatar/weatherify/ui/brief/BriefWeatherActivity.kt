@@ -14,10 +14,10 @@ import kotlinx.android.synthetic.main.activity_brief_weather.*
 import javax.inject.Inject
 
 
-class BriefWeatherActivity : BaseActivity(), BriefWeatherMvpView {
+class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
 
     @Inject
-    lateinit var briefWeatherMvpPresenter: BriefWeatherMvpPresenter
+    lateinit var briefWeatherMvpPresenter: BriefWeatherContract.Presenter
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
