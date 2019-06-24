@@ -15,7 +15,7 @@ abstract class BasePresenter<V : BaseMvpView> : BaseMvpPresenter<V> {
     }
 
     // TODO user friendly error
-    fun checkView() {
+    fun checkDetachedView() {
         if (this.view == null) {
             Timber.e(DETACHED_VIEW_ERROR)
             return

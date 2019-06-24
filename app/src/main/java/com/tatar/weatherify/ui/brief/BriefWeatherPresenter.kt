@@ -32,7 +32,7 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
-        checkView()
+        checkDetachedView()
 
         if (sunriseSunsetUtil.isDayLight()) view?.setDayBgImage() else view?.setNightBgImage()
 
@@ -78,7 +78,7 @@ class BriefWeatherPresenter @Inject constructor(
     }
 
     override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
-        checkView()
+        checkDetachedView()
         view?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
     }
 

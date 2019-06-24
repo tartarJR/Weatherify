@@ -10,7 +10,7 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter, 
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
 
-        checkView()
+        checkDetachedView()
 
         if (isDayLight) {
             view?.setDayBgImage()
@@ -25,7 +25,7 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter, 
 
     override fun initDayNightSwitch(isDayLight: Boolean) {
 
-        checkView()
+        checkDetachedView()
 
         view?.setDayNightSwitchChecked(isDayLight)
 
