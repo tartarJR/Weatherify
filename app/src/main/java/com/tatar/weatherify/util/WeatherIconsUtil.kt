@@ -15,7 +15,7 @@ object WeatherIconsUtil {
         "Light snow shower" -> R.drawable.light_snow_shower
         "Moderate snow shower" -> R.drawable.moderate_snow_shower
         "Heavy snow shower" -> R.drawable.heavy_snow_shower
-        "Light shower" -> R.drawable.light_snow_shower
+        "Light shower" -> R.drawable.light_shower
         "Moderate shower" -> R.drawable.moderate_shower
         "Heavy shower" -> R.drawable.heavy_shower
         "Light rain" -> R.drawable.light_rain
