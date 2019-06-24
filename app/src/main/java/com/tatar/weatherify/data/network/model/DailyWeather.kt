@@ -6,7 +6,7 @@ import java.util.*
 
 @Parcelize
 data class DailyWeather(
-    var date: Date,
-    var day: WeatherInfo,
-    var night: WeatherInfo
+    val date: Date,
+    val day: WeatherInfo,
+    val night: WeatherInfo
 ) : Parcelable

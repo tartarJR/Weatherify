@@ -41,14 +41,14 @@ class PlaceAdapter @Inject constructor(private val itemClickListener: ItemClickL
 
             name_tv.text = place.name
 
-            max_temp_tv.text = if (place.tempmax != null) context.getString(
+            max_temp_tv.text = if (place.tempMax != null) context.getString(
                 R.string.max_temp_tv_txt,
-                place.tempmax
+                place.tempMax
             ) else context.getString(R.string.max_temp_tv_na_txt)
 
-            min_temp_tv.text = if (place.tempmin != null) context.getString(
+            min_temp_tv.text = if (place.tempMin != null) context.getString(
                 R.string.min_temp_tv_txt,
-                place.tempmin
+                place.tempMin
             ) else context.getString(R.string.min_temp_tv_na_txt)
 
             setOnClickListener { itemClickListener.onItemClick(place) }

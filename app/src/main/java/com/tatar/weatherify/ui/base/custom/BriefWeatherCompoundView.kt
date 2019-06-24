@@ -41,15 +41,15 @@ class BriefWeatherCompoundView : ConstraintLayout {
         if (isDaylight) {
             populateViewWithWeatherInfo(
                 DateUtil.getFormattedDate(dailyWeather.date, context.resources.getString(R.string.locale)),
-                dailyWeather.day.tempmax,
-                dailyWeather.day.tempmin,
+                dailyWeather.day.tempMax,
+                dailyWeather.day.tempMin,
                 dailyWeather.day.phenomenon
             )
         } else {
             populateViewWithWeatherInfo(
                 DateUtil.getFormattedDate(dailyWeather.date, context.resources.getString(R.string.locale)),
-                dailyWeather.night.tempmax,
-                dailyWeather.night.tempmin,
+                dailyWeather.night.tempMax,
+                dailyWeather.night.tempMin,
                 dailyWeather.night.phenomenon
             )
         }
@@ -61,7 +61,7 @@ class BriefWeatherCompoundView : ConstraintLayout {
     }
 
     private fun setupPlaceView(dateString: String) {
-        populateViewWithWeatherInfo(dateString, place.tempmax, place.tempmin, place.phenomenon)
+        populateViewWithWeatherInfo(dateString, place.tempMax, place.tempMin, place.phenomenon)
     }
 
     private fun populateViewWithWeatherInfo(dateString: String, tempMax: Int?, tempMin: Int?, phenomenon: String) {

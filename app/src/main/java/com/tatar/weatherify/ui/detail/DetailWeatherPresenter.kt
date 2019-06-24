@@ -34,8 +34,8 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Prese
 
         getViewOrThrow().displayWeatherInfoContainer(
             date,
-            dayOrNightInfo.tempmax,
-            dayOrNightInfo.tempmin,
+            dayOrNightInfo.tempMax,
+            dayOrNightInfo.tempMin,
             dayOrNightInfo.phenomenon,
             dayOrNightInfo.text
         )

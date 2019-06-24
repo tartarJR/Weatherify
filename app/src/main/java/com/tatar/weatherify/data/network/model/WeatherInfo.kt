@@ -1,16 +1,17 @@
 package com.tatar.weatherify.data.network.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class WeatherInfo(
-    var phenomenon: String,
-    var tempmin: Int,
-    var tempmax: Int,
-    var text: String,
-    var sea: String?,
-    var peipsi: String?,
-    var places: ArrayList<Place>?,
-    var winds: ArrayList<Wind>?
+    val phenomenon: String,
+    @SerializedName("tempmin") val tempMin: Int,
+    @SerializedName("tempmax") val tempMax: Int,
+    val text: String,
+    val sea: String?,
+    val peipsi: String?,
+    val places: ArrayList<Place>?,
+    val winds: ArrayList<Wind>?
 ) : Parcelable

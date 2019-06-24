@@ -39,8 +39,8 @@ class WindAdapter @Inject constructor() : RecyclerView.Adapter<WindAdapter.Place
         fun bind(wind: Wind) = with(itemView) {
             name_tv.text = wind.name
             direction_tv.text = containerView.context.getString(R.string.direction_tv_txt, wind.direction)
-            max_speed_tv.text = containerView.context.getString(R.string.max_speed_tv_txt, wind.speedmax)
-            min_speed_tv.text = containerView.context.getString(R.string.min_speed_tv_txt, wind.speedmin)
+            max_speed_tv.text = containerView.context.getString(R.string.max_speed_tv_txt, wind.speedMax)
+            min_speed_tv.text = containerView.context.getString(R.string.min_speed_tv_txt, wind.speedMin)
         }
     }
 }
