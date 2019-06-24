@@ -21,11 +21,9 @@
 
             <TextView
                 android:id="@+id/four_days_weather_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:layout_marginTop="8dp"
                 android:text="@string/four_days_weather_title_tv_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,11 +32,9 @@
 
             <TextView
                 android:id="@+id/brief_weather_hint_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:layout_marginTop="8dp"
                 android:text="@string/brief_weather_hint_tv_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,13 +110,10 @@
 
             <TextView
                 android:id="@+id/status_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -29,13 +29,10 @@
 
         <TextView
             android:id="@+id/date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,13 +48,10 @@
 
             <TextView
                 android:id="@+id/temp_max_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="center"
                 android:text="@string/temp_max_label_txt"
-                android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/temp_max_view"
                 app:layout_constraintEnd_toStartOf="@+id/phenomenon_iv"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -88,10 +82,7 @@
 
             <TextView
                 android:id="@+id/phenomenon_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
+                style="@style/TextViewStyle"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -101,10 +92,7 @@
 
             <TextView
                 android:id="@+id/weather_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
+                style="@style/TextViewStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,13 +101,10 @@
 
             <TextView
                 android:id="@+id/temp_min_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="center"
                 android:text="@string/temp_min_label_txt"
-                android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/temp_min_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -151,10 +136,8 @@
 
             <TextView
                 android:id="@+id/places_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:text="@string/places_label_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,10 +145,8 @@
 
             <TextView
                 android:id="@+id/places_hint_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:text="@string/places_hint_tv_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,10 +177,8 @@
 
             <TextView
                 android:id="@+id/winds_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:text="@string/winds_label_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -227,10 +206,8 @@
 
             <TextView
                 android:id="@+id/sea_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:text="@string/sea_label_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -238,10 +215,7 @@
 
             <TextView
                 android:id="@+id/sea_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
+                style="@style/TextViewStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -260,10 +234,8 @@
 
             <TextView
                 android:id="@+id/peipsi_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewStyle"
                 android:text="@string/peipsi_label_txt"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -271,10 +243,7 @@
 
             <TextView
                 android:id="@+id/peipsi_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
+                style="@style/TextViewStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -10,10 +10,8 @@
 
     <TextView
         android:id="@+id/place_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextViewStyle"
         android:layout_marginBottom="8dp"
-        android:textColor="@android:color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/place_weather_brief_view"
         app:layout_constraintEnd_toEndOf="parent"

@@ -15,11 +15,8 @@
 
         <TextView
             android:id="@+id/name_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
             android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,11 +25,8 @@
 
         <TextView
             android:id="@+id/max_temp_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
             android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +35,8 @@
 
         <TextView
             android:id="@+id/min_temp_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextViewStyle"
             android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
