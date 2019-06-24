@@ -11,32 +11,28 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Prese
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
 
-        checkDetachedView()
-
         if (isDayLight) {
-            view?.setDayBgImage()
-            view?.setSwitchTextToDay()
+            getViewOrThrow().setDayBgImage()
+            getViewOrThrow().setSwitchTextToDay()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
         } else {
-            view?.setNightBgImage()
-            view?.setSwitchTextToNight()
+            getViewOrThrow().setNightBgImage()
+            getViewOrThrow().setSwitchTextToNight()
             displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
         }
     }
 
     override fun initDayNightSwitch(isDayLight: Boolean) {
 
-        checkDetachedView()
+        getViewOrThrow().setDayNightSwitchChecked(isDayLight)
 
-        view?.setDayNightSwitchChecked(isDayLight)
-
-        if (isDayLight) view?.setSwitchTextToDay()
-        else view?.setSwitchTextToNight()
+        if (isDayLight) getViewOrThrow().setSwitchTextToDay()
+        else getViewOrThrow().setSwitchTextToNight()
     }
 
     private fun displayDayOrNightWeatherInfo(date: Date, dayOrNightInfo: WeatherInfo) {
 
-        view?.displayWeatherInfoContainer(
+        getViewOrThrow().displayWeatherInfoContainer(
             date,
             dayOrNightInfo.tempmax,
             dayOrNightInfo.tempmin,
@@ -45,23 +41,23 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Prese
         )
 
         dayOrNightInfo.places?.let {
-            if (it.isNotEmpty()) view?.displayPlacesContainer(it)
-            else view?.hidePlacesContainer()
+            if (it.isNotEmpty()) getViewOrThrow().displayPlacesContainer(it)
+            else getViewOrThrow().hidePlacesContainer()
         }
 
         dayOrNightInfo.winds?.let {
-            if (it.isNotEmpty()) view?.displayWindsContainer(it)
-            else view?.hideWindsContainer()
+            if (it.isNotEmpty()) getViewOrThrow().displayWindsContainer(it)
+            else getViewOrThrow().hideWindsContainer()
         }
 
         dayOrNightInfo.sea?.let {
-            if (it.isNotBlank()) view?.displaySeaContainer(it)
-            else view?.hideSeaContainer()
+            if (it.isNotBlank()) getViewOrThrow().displaySeaContainer(it)
+            else getViewOrThrow().hideSeaContainer()
         }
 
         dayOrNightInfo.peipsi?.let {
-            if (it.isNotBlank()) view?.displayPeipsiContainer(it)
-            else view?.hidePeipsiContainer()
+            if (it.isNotBlank()) getViewOrThrow().displayPeipsiContainer(it)
+            else getViewOrThrow().hidePeipsiContainer()
         }
     }
 }

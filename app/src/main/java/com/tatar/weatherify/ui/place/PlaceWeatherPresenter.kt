@@ -11,11 +11,9 @@ class PlaceWeatherPresenter @Inject constructor(
 
     override fun displayPlaceWeatherInformation(dateString: String, place: Place) {
 
-        checkDetachedView()
+        if (sunriseSunsetUtil.isDayLight()) getViewOrThrow().setDayBgImage()
+        else getViewOrThrow().setNightBgImage()
 
-        if (sunriseSunsetUtil.isDayLight()) view?.setDayBgImage()
-        else view?.setNightBgImage()
-
-        view?.displayPlaceWeatherInfo(dateString, place)
+        getViewOrThrow().displayPlaceWeatherInfo(dateString, place)
     }
 }

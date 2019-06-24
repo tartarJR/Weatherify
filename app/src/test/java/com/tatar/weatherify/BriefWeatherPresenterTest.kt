@@ -1,13 +1,10 @@
 package com.tatar.weatherify
 
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.*
 import com.tatar.weatherify.data.network.WeatherApi
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
-import com.tatar.weatherify.ui.brief.BriefWeatherMvpView
+import com.tatar.weatherify.ui.brief.BriefWeatherContract
 import com.tatar.weatherify.ui.brief.BriefWeatherPresenter
 import com.tatar.weatherify.util.NetworkUtil
 import com.tatar.weatherify.util.SunriseSunsetUtil
@@ -16,6 +13,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnit
 
@@ -31,7 +29,7 @@ class BriefWeatherPresenterTest {
     var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Mock
-    private lateinit var mockBriefWeatherMvpView: BriefWeatherMvpView
+    private lateinit var mockBriefWeatherMvpView: BriefWeatherContract.View
 
     @Mock
     private lateinit var mockWeatherApi: WeatherApi
@@ -52,11 +50,13 @@ class BriefWeatherPresenterTest {
 
         MockitoAnnotations.initMocks(this)
 
-        briefWeatherPresenter = BriefWeatherPresenter(
-            mockWeatherApi,
-            mockSharedPreferencesManager,
-            mockNetworkUtil,
-            mockSunriseSunsetUtil
+        briefWeatherPresenter = Mockito.spy(
+            BriefWeatherPresenter(
+                mockWeatherApi,
+                mockSharedPreferencesManager,
+                mockNetworkUtil,
+                mockSunriseSunsetUtil
+            )
         )
 
         briefWeatherPresenter.attachView(mockBriefWeatherMvpView)
@@ -71,7 +71,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(IS_DAY, 1, 1)
+        verifyCommonViewFunctions(IS_DAY, 2, 1, 1)
         verify(mockBriefWeatherMvpView).showFourDaysBriefWeatherInfo(mockedWeatherForecastResponse, IS_DAY)
         verify(mockSharedPreferencesManager).saveLatestWeatherForecastData(mockedWeatherForecastResponse)
     }
@@ -85,7 +85,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(NOT_IS_DAY, 1, 1)
+        verifyCommonViewFunctions(NOT_IS_DAY, 2, 1, 1)
         verify(mockBriefWeatherMvpView).showFourDaysBriefWeatherInfo(mockedWeatherForecastResponse, NOT_IS_DAY)
         verify(mockSharedPreferencesManager).saveLatestWeatherForecastData(mockedWeatherForecastResponse)
     }
@@ -99,7 +99,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(IS_DAY, 2, 2)
+        verifyCommonViewFunctions(IS_DAY, 1, 2, 2)
         verify(mockBriefWeatherMvpView).displayErrorMessage()
     }
 
@@ -112,7 +112,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(NOT_IS_DAY, 2, 2)
+        verifyCommonViewFunctions(NOT_IS_DAY, 1, 2, 2)
         verify(mockBriefWeatherMvpView).displayErrorMessage()
     }
 
@@ -125,7 +125,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(IS_DAY, 2, 2)
+        verifyCommonViewFunctions(IS_DAY, 1, 2, 2)
         verify(mockBriefWeatherMvpView).displayNoInternetWarning()
     }
 
@@ -137,7 +137,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(NOT_IS_DAY, 2, 2)
+        verifyCommonViewFunctions(NOT_IS_DAY, 1, 2, 2)
         verify(mockBriefWeatherMvpView).displayNoInternetWarning()
     }
 
@@ -149,7 +149,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(IS_DAY, 1, 1)
+        verifyCommonViewFunctions(IS_DAY, 2, 1, 1)
         verify(mockBriefWeatherMvpView).showFourDaysBriefWeatherInfo(mockedWeatherForecastResponse, IS_DAY)
         verify(mockBriefWeatherMvpView).showCachedDataDisplayedToast()
     }
@@ -162,7 +162,7 @@ class BriefWeatherPresenterTest {
 
         briefWeatherPresenter.retrieveWeatherForecastInformation()
 
-        verifyCommonViewFunctions(NOT_IS_DAY, 1, 1)
+        verifyCommonViewFunctions(NOT_IS_DAY, 2, 1, 1)
         verify(mockBriefWeatherMvpView).showFourDaysBriefWeatherInfo(mockedWeatherForecastResponse, NOT_IS_DAY)
         verify(mockBriefWeatherMvpView).showCachedDataDisplayedToast()
     }
@@ -207,10 +207,11 @@ class BriefWeatherPresenterTest {
 
     private fun verifyCommonViewFunctions(
         isDayLight: Boolean,
+        isDayLightTimes: Int,
         hideFourDaysBriefWeatherInfoTimes: Int,
         showStatusTvTimes: Int
     ) {
-        verify(mockSunriseSunsetUtil).isDayLight()
+        verify(mockSunriseSunsetUtil, times(isDayLightTimes)).isDayLight()
         if (isDayLight) verify(mockBriefWeatherMvpView).setDayBgImage() else verify(mockBriefWeatherMvpView).setNightBgImage()
         verify(mockBriefWeatherMvpView, times(hideFourDaysBriefWeatherInfoTimes)).hideFourDaysBriefWeatherInfo()
         verify(mockBriefWeatherMvpView).displayLoadingMessage()

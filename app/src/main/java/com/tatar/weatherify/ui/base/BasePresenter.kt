@@ -1,6 +1,5 @@
 package com.tatar.weatherify.ui.base
 
-import timber.log.Timber
 
 abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> {
 
@@ -15,14 +14,7 @@ abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> 
     }
 
     // TODO user friendly error
-    fun checkDetachedView() {
-        if (this.view == null) {
-            Timber.e(DETACHED_VIEW_ERROR)
-            return
-        }
-    }
-
-    companion object {
-        const val DETACHED_VIEW_ERROR = "View is detached/null"
+    fun getViewOrThrow(): V {
+        return view ?: throw IllegalStateException("View is detached/null")
     }
 }

@@ -32,11 +32,9 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
-        checkDetachedView()
+        if (sunriseSunsetUtil.isDayLight()) getViewOrThrow().setDayBgImage() else getViewOrThrow().setNightBgImage()
 
-        if (sunriseSunsetUtil.isDayLight()) view?.setDayBgImage() else view?.setNightBgImage()
-
-        view?.hideFourDaysBriefWeatherInfo()
+        getViewOrThrow().hideFourDaysBriefWeatherInfo()
         showLoadingContent()
 
         if (networkUtil.hasInternetConnection()) {
@@ -46,7 +44,7 @@ class BriefWeatherPresenter @Inject constructor(
                 .subscribe(
                     { weatherForecastResponse ->
                         hideLoadingContent()
-                        view?.showFourDaysBriefWeatherInfo(
+                        getViewOrThrow().showFourDaysBriefWeatherInfo(
                             weatherForecastResponse,
                             sunriseSunsetUtil.isDayLight()
                         )
@@ -54,22 +52,22 @@ class BriefWeatherPresenter @Inject constructor(
                     },
                     { error ->
                         Timber.e(error.localizedMessage)
-                        view?.hideFourDaysBriefWeatherInfo()
+                        getViewOrThrow().hideFourDaysBriefWeatherInfo()
                         hideLoadingContent()
-                        view?.displayErrorMessage()
-                        view?.showStatusTv()
+                        getViewOrThrow().displayErrorMessage()
+                        getViewOrThrow().showStatusTv()
                     }
                 ))
         } else {
             if (sharedPreferencesManager.getCachedWeatherForecastData() == null) {
-                view?.hideFourDaysBriefWeatherInfo()
+                getViewOrThrow().hideFourDaysBriefWeatherInfo()
                 hideLoadingContent()
-                view?.displayNoInternetWarning()
-                view?.showStatusTv()
+                getViewOrThrow().displayNoInternetWarning()
+                getViewOrThrow().showStatusTv()
             } else {
                 hideLoadingContent()
-                view?.showCachedDataDisplayedToast()
-                view?.showFourDaysBriefWeatherInfo(
+                getViewOrThrow().showCachedDataDisplayedToast()
+                getViewOrThrow().showFourDaysBriefWeatherInfo(
                     sharedPreferencesManager.getCachedWeatherForecastData()!!,
                     sunriseSunsetUtil.isDayLight()
                 )
@@ -78,18 +76,17 @@ class BriefWeatherPresenter @Inject constructor(
     }
 
     override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
-        checkDetachedView()
-        view?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
+        getViewOrThrow().startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
     }
 
     private fun showLoadingContent() {
-        view?.displayLoadingMessage()
-        view?.showStatusTv()
-        view?.showProgressBar()
+        getViewOrThrow().displayLoadingMessage()
+        getViewOrThrow().showStatusTv()
+        getViewOrThrow().showProgressBar()
     }
 
     private fun hideLoadingContent() {
-        view?.hideStatusTv()
-        view?.hideProgressBar()
+        getViewOrThrow().hideStatusTv()
+        getViewOrThrow().hideProgressBar()
     }
 }
