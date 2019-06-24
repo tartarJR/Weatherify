@@ -3,13 +3,12 @@ package com.tatar.weatherify.ui.detail
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.Place
 import com.tatar.weatherify.data.network.model.Wind
-import com.tatar.weatherify.ui.base.BaseMvpPresenter
-import com.tatar.weatherify.ui.base.BaseMvpView
+import com.tatar.weatherify.ui.base.BaseContract
 import java.util.*
 
 interface DetailWeatherContract {
 
-    interface View : BaseMvpView {
+    interface View : BaseContract.View {
         fun displayWeatherInfoContainer(
             date: Date,
             tempMax: Int,
@@ -31,7 +30,7 @@ interface DetailWeatherContract {
         fun setDayNightSwitchChecked(isDayLight: Boolean)
     }
 
-    interface Presenter : BaseMvpPresenter<View> {
+    interface Presenter : BaseContract.Presenter<View> {
         fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean)
         fun initDayNightSwitch(isDayLight: Boolean)
     }

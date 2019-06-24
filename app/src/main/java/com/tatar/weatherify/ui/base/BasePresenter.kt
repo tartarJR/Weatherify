@@ -2,7 +2,7 @@ package com.tatar.weatherify.ui.base
 
 import timber.log.Timber
 
-abstract class BasePresenter<V : BaseMvpView> : BaseMvpPresenter<V> {
+abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> {
 
     protected var view: V? = null
 

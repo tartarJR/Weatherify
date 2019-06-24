@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import com.tatar.weatherify.R
 import kotlinx.android.synthetic.main.activity_brief_weather.*
 
-abstract class BaseActivity : AppCompatActivity(), BaseMvpView {
+abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     private var progressBar: ProgressBar? = null
     private var statusTextView: TextView? = null
@@ -18,7 +18,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseMvpView {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
 
-        // TODO is it necessary or possible to eliminate findViewById here
         progressBar = findViewById(R.id.progress_bar)
         statusTextView = findViewById(R.id.status_tv)
 
