@@ -2,53 +2,40 @@ package com.tatar.weatherify.ui.detail
 
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherInfo
-import com.tatar.weatherify.ui.base.BaseMvpPresenter
-import timber.log.Timber
+import com.tatar.weatherify.ui.base.BasePresenter
 import java.util.*
 import javax.inject.Inject
 
-class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
-
-    private var detailWeatherMvpView: DetailWeatherMvpView? = null
+class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter, BasePresenter<DetailWeatherMvpView>() {
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
-        if (this.detailWeatherMvpView != null) {
-            if (isDayLight) {
-                detailWeatherMvpView?.setDayBgImage()
-                detailWeatherMvpView?.setSwitchTextToDay()
-                displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
-            } else {
-                detailWeatherMvpView?.setNightBgImage()
-                detailWeatherMvpView?.setSwitchTextToNight()
-                displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
-            }
+
+        checkView()
+
+        if (isDayLight) {
+            view?.setDayBgImage()
+            view?.setSwitchTextToDay()
+            displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.day)
         } else {
-            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
+            view?.setNightBgImage()
+            view?.setSwitchTextToNight()
+            displayDayOrNightWeatherInfo(dailyWeather.date, dailyWeather.night)
         }
     }
 
     override fun initDayNightSwitch(isDayLight: Boolean) {
-        if (this.detailWeatherMvpView != null) {
-            detailWeatherMvpView?.setDayNightSwitchChecked(isDayLight)
 
-            if (isDayLight) detailWeatherMvpView?.setSwitchTextToDay()
-            else detailWeatherMvpView?.setSwitchTextToNight()
-        } else {
-            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
-        }
-    }
+        checkView()
 
-    override fun attachView(view: DetailWeatherMvpView?) {
-        this.detailWeatherMvpView = view
-    }
+        view?.setDayNightSwitchChecked(isDayLight)
 
-    override fun detachView() {
-        this.detailWeatherMvpView = null
+        if (isDayLight) view?.setSwitchTextToDay()
+        else view?.setSwitchTextToNight()
     }
 
     private fun displayDayOrNightWeatherInfo(date: Date, dayOrNightInfo: WeatherInfo) {
 
-        detailWeatherMvpView?.displayWeatherInfoContainer(
+        view?.displayWeatherInfoContainer(
             date,
             dayOrNightInfo.tempmax,
             dayOrNightInfo.tempmin,
@@ -57,23 +44,23 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter {
         )
 
         dayOrNightInfo.places?.let {
-            if (it.isNotEmpty()) detailWeatherMvpView?.displayPlacesContainer(it)
-            else detailWeatherMvpView?.hidePlacesContainer()
+            if (it.isNotEmpty()) view?.displayPlacesContainer(it)
+            else view?.hidePlacesContainer()
         }
 
         dayOrNightInfo.winds?.let {
-            if (it.isNotEmpty()) detailWeatherMvpView?.displayWindsContainer(it)
-            else detailWeatherMvpView?.hideWindsContainer()
+            if (it.isNotEmpty()) view?.displayWindsContainer(it)
+            else view?.hideWindsContainer()
         }
 
         dayOrNightInfo.sea?.let {
-            if (it.isNotBlank()) detailWeatherMvpView?.displaySeaContainer(it)
-            else detailWeatherMvpView?.hideSeaContainer()
+            if (it.isNotBlank()) view?.displaySeaContainer(it)
+            else view?.hideSeaContainer()
         }
 
         dayOrNightInfo.peipsi?.let {
-            if (it.isNotBlank()) detailWeatherMvpView?.displayPeipsiContainer(it)
-            else detailWeatherMvpView?.hidePeipsiContainer()
+            if (it.isNotBlank()) view?.displayPeipsiContainer(it)
+            else view?.hidePeipsiContainer()
         }
     }
 }

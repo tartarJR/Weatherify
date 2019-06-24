@@ -3,7 +3,7 @@ package com.tatar.weatherify.ui.brief
 import com.tatar.weatherify.data.network.WeatherApi
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
-import com.tatar.weatherify.ui.base.BaseMvpPresenter
+import com.tatar.weatherify.ui.base.BasePresenter
 import com.tatar.weatherify.util.NetworkUtil
 import com.tatar.weatherify.util.SunriseSunsetUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,18 +18,9 @@ class BriefWeatherPresenter @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager,
     private val networkUtil: NetworkUtil,
     private val sunriseSunsetUtil: SunriseSunsetUtil
-) : BriefWeatherMvpPresenter {
+) : BriefWeatherMvpPresenter, BasePresenter<BriefWeatherMvpView>() {
 
-    private var briefWeatherMvpView: BriefWeatherMvpView? = null
     private val subscriptions = CompositeDisposable()
-
-    override fun attachView(view: BriefWeatherMvpView?) {
-        this.briefWeatherMvpView = view
-    }
-
-    override fun detachView() {
-        this.briefWeatherMvpView = null
-    }
 
     override fun clearDisposable() {
         subscriptions.clear()
@@ -41,73 +32,64 @@ class BriefWeatherPresenter @Inject constructor(
 
     override fun retrieveWeatherForecastInformation() {
 
-        if (this.briefWeatherMvpView != null) {
+        checkView()
 
-            val isDay = sunriseSunsetUtil.isDayLight()
+        if (sunriseSunsetUtil.isDayLight()) view?.setDayBgImage() else view?.setNightBgImage()
 
-            if (isDay) briefWeatherMvpView?.setDayBgImage()
-            else briefWeatherMvpView?.setNightBgImage()
+        view?.hideFourDaysBriefWeatherInfo()
+        showLoadingContent()
 
-            briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
-            showLoadingContent()
-
-            if (networkUtil.hasInternetConnection()) {
-                subscriptions.add(weatherApi.getFourDaysWeatherForecast()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { weatherForecastResponse ->
-                            hideLoadingContent()
-                            briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
-                                weatherForecastResponse,
-                                isDay
-                            )
-                            sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
-                        },
-                        { error ->
-                            Timber.e(error.localizedMessage)
-                            briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
-                            hideLoadingContent()
-                            briefWeatherMvpView?.displayErrorMessage()
-                            briefWeatherMvpView?.showStatusTv()
-                        }
-                    ))
-            } else {
-                if (sharedPreferencesManager.getCachedWeatherForecastData() == null) {
-                    briefWeatherMvpView?.hideFourDaysBriefWeatherInfo()
-                    hideLoadingContent()
-                    briefWeatherMvpView?.displayNoInternetWarning()
-                    briefWeatherMvpView?.showStatusTv()
-                } else {
-                    hideLoadingContent()
-                    briefWeatherMvpView?.showCachedDataDisplayedToast()
-                    briefWeatherMvpView?.showFourDaysBriefWeatherInfo(
-                        sharedPreferencesManager.getCachedWeatherForecastData()!!,
-                        isDay
-                    )
-                }
-            }
+        if (networkUtil.hasInternetConnection()) {
+            subscriptions.add(weatherApi.getFourDaysWeatherForecast()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { weatherForecastResponse ->
+                        hideLoadingContent()
+                        view?.showFourDaysBriefWeatherInfo(
+                            weatherForecastResponse,
+                            sunriseSunsetUtil.isDayLight()
+                        )
+                        sharedPreferencesManager.saveLatestWeatherForecastData(weatherForecastResponse)
+                    },
+                    { error ->
+                        Timber.e(error.localizedMessage)
+                        view?.hideFourDaysBriefWeatherInfo()
+                        hideLoadingContent()
+                        view?.displayErrorMessage()
+                        view?.showStatusTv()
+                    }
+                ))
         } else {
-            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
+            if (sharedPreferencesManager.getCachedWeatherForecastData() == null) {
+                view?.hideFourDaysBriefWeatherInfo()
+                hideLoadingContent()
+                view?.displayNoInternetWarning()
+                view?.showStatusTv()
+            } else {
+                hideLoadingContent()
+                view?.showCachedDataDisplayedToast()
+                view?.showFourDaysBriefWeatherInfo(
+                    sharedPreferencesManager.getCachedWeatherForecastData()!!,
+                    sunriseSunsetUtil.isDayLight()
+                )
+            }
         }
     }
 
     override fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather) {
-        if (this.briefWeatherMvpView != null) {
-            briefWeatherMvpView?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
-        } else {
-            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
-        }
+        checkView()
+        view?.startDetailWeatherActivity(dailyWeather, sunriseSunsetUtil.isDayLight())
     }
 
     private fun showLoadingContent() {
-        briefWeatherMvpView?.displayLoadingMessage()
-        briefWeatherMvpView?.showStatusTv()
-        briefWeatherMvpView?.showProgressBar()
+        view?.displayLoadingMessage()
+        view?.showStatusTv()
+        view?.showProgressBar()
     }
 
     private fun hideLoadingContent() {
-        briefWeatherMvpView?.hideStatusTv()
-        briefWeatherMvpView?.hideProgressBar()
+        view?.hideStatusTv()
+        view?.hideProgressBar()
     }
 }

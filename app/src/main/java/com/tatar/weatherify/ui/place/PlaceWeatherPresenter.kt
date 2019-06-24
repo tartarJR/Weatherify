@@ -1,37 +1,21 @@
 package com.tatar.weatherify.ui.place
 
 import com.tatar.weatherify.data.network.model.Place
-import com.tatar.weatherify.ui.base.BaseMvpPresenter
+import com.tatar.weatherify.ui.base.BasePresenter
 import com.tatar.weatherify.util.SunriseSunsetUtil
-import timber.log.Timber
 import javax.inject.Inject
 
 class PlaceWeatherPresenter @Inject constructor(
     private val sunriseSunsetUtil: SunriseSunsetUtil
-) : PlaceWeatherMvpPresenter {
-
-    private var placeWeatherMvpView: PlaceWeatherMvpView? = null
+) : PlaceWeatherMvpPresenter, BasePresenter<PlaceWeatherMvpView>() {
 
     override fun displayPlaceWeatherInformation(dateString: String, place: Place) {
 
-        if (this.placeWeatherMvpView != null) {
+        checkView()
 
-            val isDay = sunriseSunsetUtil.isDayLight()
+        if (sunriseSunsetUtil.isDayLight()) view?.setDayBgImage()
+        else view?.setNightBgImage()
 
-            if (isDay) placeWeatherMvpView?.setDayBgImage()
-            else placeWeatherMvpView?.setNightBgImage()
-
-            placeWeatherMvpView?.displayPlaceWeatherInfo(dateString, place)
-        } else {
-            Timber.e(BaseMvpPresenter.DETACHED_VIEW_ERROR)
-        }
-    }
-
-    override fun attachView(view: PlaceWeatherMvpView?) {
-        this.placeWeatherMvpView = view
-    }
-
-    override fun detachView() {
-        this.placeWeatherMvpView = null
+        view?.displayPlaceWeatherInfo(dateString, place)
     }
 }
