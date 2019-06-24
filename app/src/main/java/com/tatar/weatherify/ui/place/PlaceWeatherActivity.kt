@@ -9,10 +9,10 @@ import com.tatar.weatherify.ui.detail.DetailWeatherActivity
 import kotlinx.android.synthetic.main.activity_place_weather.*
 import javax.inject.Inject
 
-class PlaceWeatherActivity : BaseActivity(), PlaceWeatherMvpView {
+class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
 
     @Inject
-    lateinit var placeWeatherMvpPresenter: PlaceWeatherMvpPresenter
+    lateinit var placeWeatherMvpPresenter: PlaceWeatherContract.Presenter
 
     override fun getLayoutId(): Int {
         return R.layout.activity_place_weather

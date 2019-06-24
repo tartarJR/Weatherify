@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class PlaceWeatherPresenter @Inject constructor(
     private val sunriseSunsetUtil: SunriseSunsetUtil
-) : PlaceWeatherMvpPresenter, BasePresenter<PlaceWeatherMvpView>() {
+) : PlaceWeatherContract.Presenter, BasePresenter<PlaceWeatherContract.View>() {
 
     override fun displayPlaceWeatherInformation(dateString: String, place: Place) {
 
