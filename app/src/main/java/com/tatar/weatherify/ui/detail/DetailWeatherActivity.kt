@@ -19,7 +19,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter.ItemClickListener {
+class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceAdapter.ItemClickListener {
 
     @Inject
     lateinit var placeAdapter: PlaceAdapter
@@ -28,7 +28,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
     lateinit var windAdapter: WindAdapter
 
     @Inject
-    lateinit var detailWeatherMvpPresenter: DetailWeatherMvpPresenter
+    lateinit var detailWeatherMvpPresenter: DetailWeatherContract.Presenter
 
     override fun getLayoutId(): Int {
         return R.layout.activity_detail_weather
@@ -108,10 +108,6 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherMvpView, PlaceAdapter
     override fun displayPeipsiContainer(peipsi: String) {
         peipsi_tv.text = peipsi
         peipsi_info_container.visibility = View.VISIBLE
-    }
-
-    override fun hideWeatherInfoContainer() {
-        weather_info_container.visibility = View.GONE
     }
 
     override fun hidePlacesContainer() {

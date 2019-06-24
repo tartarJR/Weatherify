@@ -6,7 +6,8 @@ import com.tatar.weatherify.ui.base.BasePresenter
 import java.util.*
 import javax.inject.Inject
 
-class DetailWeatherPresenter @Inject constructor() : DetailWeatherMvpPresenter, BasePresenter<DetailWeatherMvpView>() {
+class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Presenter,
+    BasePresenter<DetailWeatherContract.View>() {
 
     override fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean) {
 
