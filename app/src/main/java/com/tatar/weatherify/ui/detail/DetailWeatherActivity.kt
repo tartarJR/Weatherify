@@ -43,8 +43,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
         detailComponent.injectDetailWeatherActivity(this)
     }
 
-    override fun initViews() {
-        detailWeatherMvpPresenter.initDayNightSwitch(getIsDayLight())
+    override fun init() {
 
         day_night_switch.setOnCheckedChangeListener { _, isDay ->
             detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), isDay)
@@ -63,10 +62,9 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
             false
         )
         wind_recycler_view.adapter = windAdapter
-    }
 
-    override fun init() {
         detailWeatherMvpPresenter.attachView(this)
+        detailWeatherMvpPresenter.initDayNightSwitch(getIsDayLight())
         detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), getIsDayLight())
     }
 

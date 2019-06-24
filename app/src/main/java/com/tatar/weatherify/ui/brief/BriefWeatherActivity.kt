@@ -41,7 +41,7 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
         briefComponent.injectSearchActivity(this)
     }
 
-    override fun initViews() {
+    override fun init() {
         swipe_refresh_layout.setOnRefreshListener {
             briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
             swipe_refresh_layout.isRefreshing = false
@@ -62,9 +62,7 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
         fourth_daily_weather_brief_view.setOnClickListener {
             briefWeatherMvpPresenter.navigateToDetailWeatherActivity(fourth_daily_weather_brief_view.getDailyWeather())
         }
-    }
 
-    override fun init() {
         briefWeatherMvpPresenter.attachView(this)
         briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
     }

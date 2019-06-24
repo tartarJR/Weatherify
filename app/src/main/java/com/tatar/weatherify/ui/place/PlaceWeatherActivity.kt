@@ -26,16 +26,11 @@ class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
         placeComponent.injectPlaceWeatherActivity(this)
     }
 
-    override fun initViews() {
-
-    }
-
     override fun init() {
-        placeWeatherMvpPresenter.attachView(this)
-
         val dateString = intent?.extras?.getString(DetailWeatherActivity.BUNDLE_KEY_DATE)
         val place = intent?.extras?.getParcelable<Place>(DetailWeatherActivity.BUNDLE_KEY_SELECTED_PLACE_WEATHER)
 
+        placeWeatherMvpPresenter.attachView(this)
         placeWeatherMvpPresenter.displayPlaceWeatherInformation(dateString!!, place!!)
     }
 

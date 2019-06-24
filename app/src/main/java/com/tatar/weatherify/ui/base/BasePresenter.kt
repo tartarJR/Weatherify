@@ -13,7 +13,7 @@ abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter<V> 
         this.view = null
     }
 
-    // TODO user friendly error
+    // TODO user friendly empty view handling
     fun getViewOrThrow(): V {
         return view ?: throw IllegalStateException("View is detached/null")
     }

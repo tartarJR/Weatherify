@@ -22,7 +22,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         statusTextView = findViewById(R.id.status_tv)
 
         provideDependencies()
-        initViews()
         init()
     }
 
@@ -33,7 +32,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     protected abstract fun getLayoutId(): Int
     protected abstract fun provideDependencies()
-    protected abstract fun initViews()
     protected abstract fun init()
     protected abstract fun releasePresenterResources()
 
