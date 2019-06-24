@@ -3,10 +3,8 @@ package com.tatar.weatherify.util
 import com.tatar.weatherify.R
 
 
-object ViewUtil {
+object WeatherIconsUtil {
 
-    // TODO update corresponding images properly
-    // TODO use static variables or enums for phenomenons
     @JvmStatic
     fun getWeatherIconByPhenomenon(phenomenon: String) = when (phenomenon) {
         "Clear" -> R.drawable.clear

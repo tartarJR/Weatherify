@@ -8,7 +8,7 @@ import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.Place
 import com.tatar.weatherify.util.DateUtil
-import com.tatar.weatherify.util.ViewUtil
+import com.tatar.weatherify.util.WeatherIconsUtil
 import kotlinx.android.synthetic.main.view_brief_weather.view.*
 
 
@@ -69,6 +69,6 @@ class BriefWeatherCompoundView : ConstraintLayout {
         temp_max_view.setTemperature(tempMax)
         temp_min_view.setTemperature(tempMin)
         phenomenon_tv.text = phenomenon
-        phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(phenomenon))
+        phenomenon_iv.setImageResource(WeatherIconsUtil.getWeatherIconByPhenomenon(phenomenon))
     }
 }

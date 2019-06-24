@@ -13,7 +13,7 @@ import com.tatar.weatherify.ui.base.BaseActivity
 import com.tatar.weatherify.ui.brief.BriefWeatherActivity
 import com.tatar.weatherify.ui.place.PlaceWeatherActivity
 import com.tatar.weatherify.util.DateUtil
-import com.tatar.weatherify.util.ViewUtil
+import com.tatar.weatherify.util.WeatherIconsUtil
 import kotlinx.android.synthetic.main.activity_detail_weather.*
 import java.util.*
 import javax.inject.Inject
@@ -84,7 +84,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
         date_tv.text = DateUtil.getFormattedDate(date, getString(R.string.locale))
         temp_max_view.setTemperature(tempMax)
         temp_min_view.setTemperature(tempMin)
-        phenomenon_iv.setImageResource(ViewUtil.getWeatherIconByPhenomenon(phenomenon))
+        phenomenon_iv.setImageResource(WeatherIconsUtil.getWeatherIconByPhenomenon(phenomenon))
         phenomenon_tv.text = phenomenon
         weather_tv.text = weatherInfo
         weather_info_container.visibility = View.VISIBLE
