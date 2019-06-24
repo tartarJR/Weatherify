@@ -27,11 +27,12 @@ class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
     }
 
     override fun init() {
-        val dateString = intent?.extras?.getString(DetailWeatherActivity.BUNDLE_KEY_DATE)
-        val place = intent?.extras?.getParcelable<Place>(DetailWeatherActivity.BUNDLE_KEY_SELECTED_PLACE_WEATHER)
+        val dateString = intent?.extras?.getString(DetailWeatherActivity.BUNDLE_KEY_DATE)!!
+        val place = intent?.extras?.getParcelable<Place>(DetailWeatherActivity.BUNDLE_KEY_SELECTED_PLACE_WEATHER)!!
+        val isDayLight = intent?.extras?.getBoolean(DetailWeatherActivity.BUNDLE_KEY_IS_DAY_LIGHT)!!
 
         placeWeatherMvpPresenter.attachView(this)
-        placeWeatherMvpPresenter.displayPlaceWeatherInformation(dateString!!, place!!)
+        placeWeatherMvpPresenter.displayPlaceWeatherInformation(dateString, place, isDayLight)
     }
 
     override fun releasePresenterResources() {

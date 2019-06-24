@@ -140,6 +140,7 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
         val intent = Intent(this, PlaceWeatherActivity::class.java)
         intent.putExtra(BUNDLE_KEY_SELECTED_PLACE_WEATHER, place)
         intent.putExtra(BUNDLE_KEY_DATE, date_tv.text)
+        intent.putExtra(BUNDLE_KEY_IS_DAY_LIGHT, day_night_switch.isChecked)
         startActivity(intent)
     }
 
@@ -154,5 +155,6 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
     companion object {
         const val BUNDLE_KEY_SELECTED_PLACE_WEATHER = "selected_place_weather"
         const val BUNDLE_KEY_DATE = "date"
+        const val BUNDLE_KEY_IS_DAY_LIGHT = "is_day_light"
     }
 }
