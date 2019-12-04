@@ -28,7 +28,13 @@ object NetworkModule {
     @PerApp
     @Provides
     fun loggingInterceptor(): HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.i(message) })
+
+        val interceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                Timber.tag("OkHttp").d(message)
+            }
+        })
+
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
 
         return interceptor
