@@ -4,6 +4,7 @@ import com.tatar.weatherify.data.network.WeatherApi
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.WeatherForecastResponse
 import com.tatar.weatherify.data.prefs.SharedPreferencesManager
+import com.tatar.weatherify.di.PerActivity
 import com.tatar.weatherify.ui.base.BasePresenter
 import com.tatar.weatherify.util.NetworkUtil
 import com.tatar.weatherify.util.SunriseSunsetUtil
@@ -13,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-
+@PerActivity
 class BriefWeatherPresenter @Inject constructor(
     private val weatherApi: WeatherApi,
     private val sharedPreferencesManager: SharedPreferencesManager,

@@ -4,10 +4,12 @@ import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.Place
 import com.tatar.weatherify.data.network.model.WeatherInfo
 import com.tatar.weatherify.data.network.model.Wind
+import com.tatar.weatherify.di.PerActivity
 import com.tatar.weatherify.ui.base.BasePresenter
 import java.util.*
 import javax.inject.Inject
 
+@PerActivity
 class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Presenter,
     BasePresenter<DetailWeatherContract.View>() {
 

@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Wind
+import com.tatar.weatherify.di.PerActivity
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.wind_adapter_item.*
 import javax.inject.Inject
 
+@PerActivity
 class WindAdapter @Inject constructor() : RecyclerView.Adapter<WindAdapter.PlaceViewHolder>() {
 
     private var winds: List<Wind> = ArrayList()

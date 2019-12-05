@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Place
+import com.tatar.weatherify.di.PerActivity
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.place_adapter_item.*
 import javax.inject.Inject
 
+@PerActivity
 class PlaceAdapter @Inject constructor(private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
