@@ -17,16 +17,16 @@ import javax.inject.Inject
 class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
 
     @Inject
-    lateinit var briefWeatherMvpPresenter: BriefWeatherContract.Presenter
+    lateinit var briefWeatherPresenter: BriefWeatherContract.Presenter
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
+        briefWeatherPresenter.onDataRequested()
     }
 
     override fun onStop() {
         super.onStop()
-        briefWeatherMvpPresenter.clearDisposable()
+        briefWeatherPresenter.clearDisposable()
     }
 
     override fun getLayoutId(): Int {
@@ -34,68 +34,80 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
     }
 
     override fun provideDependencies() {
-        val briefComponent = DaggerBriefComponent.builder()
+        DaggerBriefComponent.builder()
             .briefWeatherActivity(this)
             .appComponent((application as App).appComponent()).build()
-
-        briefComponent.injectSearchActivity(this)
+            .injectSearchActivity(this)
     }
 
     override fun init() {
+        setupViews()
+        briefWeatherPresenter.attachView(this)
+        briefWeatherPresenter.onDataRequested()
+    }
+
+    private fun setupViews() {
         swipe_refresh_layout.setOnRefreshListener {
-            briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
+            briefWeatherPresenter.onDataRequested()
             swipe_refresh_layout.isRefreshing = false
         }
 
-        first_daily_weather_brief_view.setOnClickListener {
-            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(first_daily_weather_brief_view.getDailyWeather())
+        first_brief_weather_view.setOnClickListener {
+            briefWeatherPresenter.navigateToDetailWeatherActivity(first_brief_weather_view.getDailyWeather())
         }
 
-        second_daily_weather_brief_view.setOnClickListener {
-            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(second_daily_weather_brief_view.getDailyWeather())
+        second_brief_weather_view.setOnClickListener {
+            briefWeatherPresenter.navigateToDetailWeatherActivity(second_brief_weather_view.getDailyWeather())
         }
 
-        third_daily_weather_brief_view.setOnClickListener {
-            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(third_daily_weather_brief_view.getDailyWeather())
+        third_brief_weather_view.setOnClickListener {
+            briefWeatherPresenter.navigateToDetailWeatherActivity(third_brief_weather_view.getDailyWeather())
         }
 
-        fourth_daily_weather_brief_view.setOnClickListener {
-            briefWeatherMvpPresenter.navigateToDetailWeatherActivity(fourth_daily_weather_brief_view.getDailyWeather())
+        fourth_brief_weather_view.setOnClickListener {
+            briefWeatherPresenter.navigateToDetailWeatherActivity(fourth_brief_weather_view.getDailyWeather())
         }
-
-        briefWeatherMvpPresenter.attachView(this)
-        briefWeatherMvpPresenter.retrieveWeatherForecastInformation()
     }
 
     override fun releasePresenterResources() {
-        briefWeatherMvpPresenter.detachView()
-        briefWeatherMvpPresenter.disposeDisposable()
+        briefWeatherPresenter.detachView()
+        briefWeatherPresenter.disposeDisposable()
     }
 
-    override fun showFourDaysBriefWeatherInfo(weatherForecastResponse: WeatherForecastResponse, isDayLight: Boolean) {
-        four_days_weather_title_tv.visibility = View.VISIBLE
-        brief_weather_hint_tv.visibility = View.VISIBLE
+    override fun showFourDaysBriefWeatherInfo(
+        weatherForecastResponse: WeatherForecastResponse,
+        isDayLight: Boolean
+    ) {
+        setLabelsVisibility(View.VISIBLE)
+        setBriefWeatherViewsVisibility(View.VISIBLE)
+        setBriefWeatherViewsData(weatherForecastResponse, isDayLight)
+    }
 
-        first_daily_weather_brief_view.visibility = View.VISIBLE
-        second_daily_weather_brief_view.visibility = View.VISIBLE
-        third_daily_weather_brief_view.visibility = View.VISIBLE
-        fourth_daily_weather_brief_view.visibility = View.VISIBLE
-
-        first_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[0], isDayLight) // current day
-        second_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[1], isDayLight) // 2nd day
-        third_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[2], isDayLight) // 3rd day
-        fourth_daily_weather_brief_view.setDailyWeather(weatherForecastResponse.forecasts[3], isDayLight) // 4th day
+    private fun setBriefWeatherViewsData(
+        weatherForecastResponse: WeatherForecastResponse,
+        isDayLight: Boolean
+    ) {
+        first_brief_weather_view.setDailyWeather(weatherForecastResponse.forecasts[0], isDayLight)
+        second_brief_weather_view.setDailyWeather(weatherForecastResponse.forecasts[1], isDayLight)
+        third_brief_weather_view.setDailyWeather(weatherForecastResponse.forecasts[2], isDayLight)
+        fourth_brief_weather_view.setDailyWeather(weatherForecastResponse.forecasts[3], isDayLight)
     }
 
     override fun hideFourDaysBriefWeatherInfo() {
+        setLabelsVisibility(View.GONE)
+        setBriefWeatherViewsVisibility(View.GONE)
+    }
 
-        four_days_weather_title_tv.visibility = View.GONE
-        brief_weather_hint_tv.visibility = View.GONE
+    private fun setLabelsVisibility(visibilityStatus: Int) {
+        four_days_weather_title_tv.visibility = visibilityStatus
+        brief_weather_hint_tv.visibility = visibilityStatus
+    }
 
-        first_daily_weather_brief_view.visibility = View.GONE
-        second_daily_weather_brief_view.visibility = View.GONE
-        third_daily_weather_brief_view.visibility = View.GONE
-        fourth_daily_weather_brief_view.visibility = View.GONE
+    private fun setBriefWeatherViewsVisibility(visibilityStatus: Int) {
+        first_brief_weather_view.visibility = visibilityStatus
+        second_brief_weather_view.visibility = visibilityStatus
+        third_brief_weather_view.visibility = visibilityStatus
+        fourth_brief_weather_view.visibility = visibilityStatus
     }
 
     override fun showCachedDataDisplayedToast() {

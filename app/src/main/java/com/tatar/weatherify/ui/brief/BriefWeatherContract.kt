@@ -14,7 +14,7 @@ interface BriefWeatherContract {
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun retrieveWeatherForecastInformation()
+        fun onDataRequested()
         fun navigateToDetailWeatherActivity(dailyWeather: DailyWeather)
         fun clearDisposable()
         fun disposeDisposable()

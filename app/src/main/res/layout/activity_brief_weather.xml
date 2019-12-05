@@ -42,49 +42,49 @@
                 app:layout_constraintTop_toBottomOf="@+id/four_days_weather_title_tv" />
 
             <com.tatar.weatherify.ui.base.custom.BriefWeatherCompoundView
-                android:id="@+id/first_daily_weather_brief_view"
+                android:id="@+id/first_brief_weather_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/second_daily_weather_brief_view"
+                app:layout_constraintBottom_toTopOf="@+id/second_brief_weather_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/brief_weather_hint_tv" />
 
             <com.tatar.weatherify.ui.base.custom.BriefWeatherCompoundView
-                android:id="@+id/second_daily_weather_brief_view"
+                android:id="@+id/second_brief_weather_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/third_daily_weather_brief_view"
+                app:layout_constraintBottom_toTopOf="@+id/third_brief_weather_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/first_daily_weather_brief_view" />
+                app:layout_constraintTop_toBottomOf="@+id/first_brief_weather_view" />
 
             <com.tatar.weatherify.ui.base.custom.BriefWeatherCompoundView
-                android:id="@+id/third_daily_weather_brief_view"
+                android:id="@+id/third_brief_weather_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/fourth_daily_weather_brief_view"
+                app:layout_constraintBottom_toTopOf="@+id/fourth_brief_weather_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_daily_weather_brief_view" />
+                app:layout_constraintTop_toBottomOf="@+id/second_brief_weather_view" />
 
             <com.tatar.weatherify.ui.base.custom.BriefWeatherCompoundView
-                android:id="@+id/fourth_daily_weather_brief_view"
+                android:id="@+id/fourth_brief_weather_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -96,7 +96,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/third_daily_weather_brief_view" />
+                app:layout_constraintTop_toBottomOf="@+id/third_brief_weather_view" />
 
             <ProgressBar
                 android:id="@+id/progress_bar"
