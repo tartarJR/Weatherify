@@ -12,11 +12,11 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Prese
     BasePresenter<DetailWeatherContract.View>() {
 
     override fun onDataRequested(dailyWeather: DailyWeather, isDayLight: Boolean) {
-        if (isDayLight) onDataRequested(dailyWeather.date, dailyWeather.day)
+        if (isDayLight) onDayDataRequested(dailyWeather.date, dailyWeather.day)
         else onNightDataRequested(dailyWeather.date, dailyWeather.day)
     }
 
-    private fun onDataRequested(date: Date, dayInfo: WeatherInfo) {
+    private fun onDayDataRequested(date: Date, dayInfo: WeatherInfo) {
         getViewOrThrow().setDayBgImage()
         getViewOrThrow().setSwitchTextToDay()
         displayWeatherData(date, dayInfo)
