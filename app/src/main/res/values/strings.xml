@@ -31,7 +31,7 @@
     <!--city item layout-->
     <string name="max_temp_tv_txt">Max Temp: %1$d\u2103</string>
     <string name="min_temp_tv_txt">Min Temp: %1$d\u2103</string>
-    <string name="max_temp_tv_na_txt">Min Temp: —</string>
+    <string name="max_temp_tv_na_txt">Max Temp: —</string>
     <string name="min_temp_tv_na_txt">Min Temp: —</string>
 
     <!--wind item layout-->
