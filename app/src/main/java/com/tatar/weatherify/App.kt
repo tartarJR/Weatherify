@@ -1,8 +1,8 @@
 package com.tatar.weatherify
 
 import android.app.Application
-import com.tatar.weatherify.di.app.component.AppComponent
-import com.tatar.weatherify.di.app.component.DaggerAppComponent
+import com.tatar.weatherify.di.app.AppComponent
+import com.tatar.weatherify.di.app.DaggerAppComponent
 import com.tatar.weatherify.util.CustomLogTree
 import timber.log.Timber
 

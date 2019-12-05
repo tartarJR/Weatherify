@@ -1,4 +1,4 @@
-package com.tatar.weatherify.di.app.component
+package com.tatar.weatherify.di.app
 
 import android.content.Context
 import com.tatar.weatherify.data.network.WeatherApi
@@ -6,7 +6,7 @@ import com.tatar.weatherify.data.prefs.SharedPreferencesManager
 import com.tatar.weatherify.di.app.module.PrefsModule
 import com.tatar.weatherify.di.app.module.SunriseSunsetCalculatorModule
 import com.tatar.weatherify.di.app.module.WeatherServiceModule
-import com.tatar.weatherify.di.app.scope.PerApp
+import com.tatar.weatherify.di.PerApp
 import com.tatar.weatherify.util.NetworkUtil
 import com.tatar.weatherify.util.SunriseSunsetUtil
 import dagger.BindsInstance

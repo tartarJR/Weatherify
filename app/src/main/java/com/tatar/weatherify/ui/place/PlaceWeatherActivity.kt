@@ -1,6 +1,5 @@
 package com.tatar.weatherify.ui.place
 
-import com.tatar.weatherify.App
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.Place
 import com.tatar.weatherify.di.place.DaggerPlaceComponent
@@ -19,10 +18,7 @@ class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
     }
 
     override fun provideDependencies() {
-        DaggerPlaceComponent.builder()
-            .placeWeatherActivity(this)
-            .appComponent((application as App).appComponent()).build()
-            .injectPlaceWeatherActivity(this)
+        DaggerPlaceComponent.create().inject(this)
     }
 
     override fun init() {

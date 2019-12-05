@@ -1,20 +1,43 @@
 package com.tatar.weatherify.di.app.module
 
 import android.content.Context
-import com.tatar.weatherify.di.app.scope.PerApp
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.tatar.weatherify.data.network.WeatherApi
+import com.tatar.weatherify.di.PerApp
 import com.tatar.weatherify.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.io.File
 
 @Module
 object NetworkModule {
 
-    @JvmStatic
+    @PerApp
+    @Provides
+    fun retrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
+            .baseUrl(WeatherApi.BASE_URL)
+            .build()
+    }
+
+    @PerApp
+    @Provides
+    fun gson(): Gson {
+        val gsonBuilder = GsonBuilder().setDateFormat("yyyy-MM-dd")
+        return gsonBuilder.create()
+    }
+
     @PerApp
     @Provides
     fun okHttpClient(loggingInterceptor: HttpLoggingInterceptor, cache: Cache): OkHttpClient {
@@ -24,7 +47,6 @@ object NetworkModule {
             .build()
     }
 
-    @JvmStatic
     @PerApp
     @Provides
     fun loggingInterceptor(): HttpLoggingInterceptor {
@@ -40,21 +62,18 @@ object NetworkModule {
         return interceptor
     }
 
-    @JvmStatic
     @PerApp
     @Provides
     fun cache(cacheFile: File): Cache {
         return Cache(cacheFile, 10 * 1000 * 1000)
     }
 
-    @JvmStatic
     @PerApp
     @Provides
     fun cacheFile(context: Context): File {
         return File(context.cacheDir, "network_cache")
     }
 
-    @JvmStatic
     @PerApp
     @Provides
     fun networkUtil(context: Context): NetworkUtil {

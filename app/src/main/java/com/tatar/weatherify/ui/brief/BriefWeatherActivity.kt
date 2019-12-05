@@ -35,9 +35,9 @@ class BriefWeatherActivity : BaseActivity(), BriefWeatherContract.View {
 
     override fun provideDependencies() {
         DaggerBriefComponent.builder()
-            .briefWeatherActivity(this)
-            .appComponent((application as App).appComponent()).build()
-            .injectSearchActivity(this)
+            .appComponent((application as App).appComponent())
+            .build()
+            .inject(this)
     }
 
     override fun init() {

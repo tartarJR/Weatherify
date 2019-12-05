@@ -3,7 +3,6 @@ package com.tatar.weatherify.ui.detail
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tatar.weatherify.App
 import com.tatar.weatherify.R
 import com.tatar.weatherify.data.network.model.DailyWeather
 import com.tatar.weatherify.data.network.model.Place
@@ -37,10 +36,9 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View,
 
     override fun provideDependencies() {
         DaggerDetailComponent.builder()
-            .detailWeatherActivity(this)
             .itemClickListener(this)
-            .appComponent((application as App).appComponent()).build()
-            .injectDetailWeatherActivity(this)
+            .build()
+            .inject(this)
     }
 
     override fun init() {
