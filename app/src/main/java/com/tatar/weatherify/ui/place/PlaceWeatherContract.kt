@@ -10,6 +10,6 @@ interface PlaceWeatherContract {
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun displayPlaceWeatherInformation(dateString: String, place: Place, isDayLight: Boolean)
+        fun onDataReceived(dateString: String, place: Place, isDayLight: Boolean)
     }
 }

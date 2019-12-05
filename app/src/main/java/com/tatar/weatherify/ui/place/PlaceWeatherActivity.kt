@@ -12,18 +12,17 @@ import javax.inject.Inject
 class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
 
     @Inject
-    lateinit var placeWeatherMvpPresenter: PlaceWeatherContract.Presenter
+    lateinit var placeWeatherPresenter: PlaceWeatherContract.Presenter
 
     override fun getLayoutId(): Int {
         return R.layout.activity_place_weather
     }
 
     override fun provideDependencies() {
-        val placeComponent = DaggerPlaceComponent.builder()
+        DaggerPlaceComponent.builder()
             .placeWeatherActivity(this)
             .appComponent((application as App).appComponent()).build()
-
-        placeComponent.injectPlaceWeatherActivity(this)
+            .injectPlaceWeatherActivity(this)
     }
 
     override fun init() {
@@ -31,12 +30,12 @@ class PlaceWeatherActivity : BaseActivity(), PlaceWeatherContract.View {
         val place = intent?.extras?.getParcelable<Place>(DetailWeatherActivity.BUNDLE_KEY_SELECTED_PLACE_WEATHER)!!
         val isDayLight = intent?.extras?.getBoolean(DetailWeatherActivity.BUNDLE_KEY_IS_DAY_LIGHT)!!
 
-        placeWeatherMvpPresenter.attachView(this)
-        placeWeatherMvpPresenter.displayPlaceWeatherInformation(dateString, place, isDayLight)
+        placeWeatherPresenter.attachView(this)
+        placeWeatherPresenter.onDataReceived(dateString, place, isDayLight)
     }
 
     override fun releasePresenterResources() {
-        placeWeatherMvpPresenter.detachView()
+        placeWeatherPresenter.detachView()
     }
 
     override fun displayPlaceWeatherInfo(dateString: String, place: Place) {
