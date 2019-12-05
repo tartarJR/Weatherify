@@ -13,7 +13,7 @@ class DetailWeatherPresenter @Inject constructor() : DetailWeatherContract.Prese
 
     override fun onDataRequested(dailyWeather: DailyWeather, isDayLight: Boolean) {
         if (isDayLight) onDayDataRequested(dailyWeather.date, dailyWeather.day)
-        else onNightDataRequested(dailyWeather.date, dailyWeather.day)
+        else onNightDataRequested(dailyWeather.date, dailyWeather.night)
     }
 
     private fun onDayDataRequested(date: Date, dayInfo: WeatherInfo) {
