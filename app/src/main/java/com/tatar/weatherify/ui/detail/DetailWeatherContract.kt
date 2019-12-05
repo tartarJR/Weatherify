@@ -31,7 +31,7 @@ interface DetailWeatherContract {
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun displayDetailWeatherInformation(dailyWeather: DailyWeather, isDayLight: Boolean)
-        fun initDayNightSwitch(isDayLight: Boolean)
+        fun onDataRequested(dailyWeather: DailyWeather, isDayLight: Boolean)
+        fun initSwitch(isDayLight: Boolean)
     }
 }

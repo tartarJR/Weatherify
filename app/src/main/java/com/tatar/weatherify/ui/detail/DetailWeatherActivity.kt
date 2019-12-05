@@ -19,7 +19,8 @@ import java.util.*
 import javax.inject.Inject
 
 
-class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceAdapter.ItemClickListener {
+class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View,
+    PlaceAdapter.ItemClickListener {
 
     @Inject
     lateinit var placeAdapter: PlaceAdapter
@@ -28,25 +29,30 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
     lateinit var windAdapter: WindAdapter
 
     @Inject
-    lateinit var detailWeatherMvpPresenter: DetailWeatherContract.Presenter
+    lateinit var detailWeatherPresenter: DetailWeatherContract.Presenter
 
     override fun getLayoutId(): Int {
         return R.layout.activity_detail_weather
     }
 
     override fun provideDependencies() {
-        val detailComponent = DaggerDetailComponent.builder()
+        DaggerDetailComponent.builder()
             .detailWeatherActivity(this)
             .itemClickListener(this)
             .appComponent((application as App).appComponent()).build()
-
-        detailComponent.injectDetailWeatherActivity(this)
+            .injectDetailWeatherActivity(this)
     }
 
     override fun init() {
+        setupViews()
+        detailWeatherPresenter.attachView(this)
+        detailWeatherPresenter.initSwitch(getIsDayLight())
+        detailWeatherPresenter.onDataRequested(getDailyWeather(), getIsDayLight())
+    }
 
+    private fun setupViews() {
         day_night_switch.setOnCheckedChangeListener { _, isDay ->
-            detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), isDay)
+            detailWeatherPresenter.onDataRequested(getDailyWeather(), isDay)
         }
 
         place_recycler_view.layoutManager = LinearLayoutManager(
@@ -62,14 +68,10 @@ class DetailWeatherActivity : BaseActivity(), DetailWeatherContract.View, PlaceA
             false
         )
         wind_recycler_view.adapter = windAdapter
-
-        detailWeatherMvpPresenter.attachView(this)
-        detailWeatherMvpPresenter.initDayNightSwitch(getIsDayLight())
-        detailWeatherMvpPresenter.displayDetailWeatherInformation(getDailyWeather(), getIsDayLight())
     }
 
     override fun releasePresenterResources() {
-        detailWeatherMvpPresenter.detachView()
+        detailWeatherPresenter.detachView()
     }
 
     override fun displayWeatherInfoContainer(
